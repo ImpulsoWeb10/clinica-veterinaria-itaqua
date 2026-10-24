@@ -3,337 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parceiro Verificado | Guia Pet Itaquá</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <title>Parceiro Verificado</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f4f7f6; color: #333; padding: 20px; display: flex; justify-content: center; }
+        .container { max-width: 600px; width: 100%; background: #ffffff; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 24px; position: relative; padding-bottom: 90px; }
+        .badge { background: #e6f7ed; color: #1f9254; font-weight: bold; font-size: 12px; padding: 6px 12px; border-radius: 20px; display: inline-block; margin-bottom: 16px; }
+        h1 { font-size: 24px; color: #111; margin-bottom: 8px; }
+        .subtitulo { font-size: 15px; color: #666; line-height: 1.5; margin-bottom: 16px; }
+        .crmv { font-size: 13px; color: #999; font-weight: 600; margin-bottom: 24px; }
+        h2 { font-size: 18px; margin-bottom: 12px; color: #222; border-bottom: 2px solid #f0f0f0; padding-bottom: 6px; }
+        .grid-servicos { margin-bottom: 24px; }
+        .servico-card { background: #fafafa; padding: 12px; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #007bff; }
+        .servico-titulo { font-weight: bold; font-size: 14px; margin-bottom: 2px; }
+        .servico-desc { font-size: 13px; color: #666; }
+        .info-section { font-size: 14px; margin-bottom: 16px; color: #444; }
+        .info-section p { margin-bottom: 6px; }
         
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f8fafc;
-        }
+        /* Área de Botões Fixos Embaixo */
+        .botoes-acao { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); max-width: 560px; z-index: 99; }
+        .btn-whats { text-align: center; background: #25d366; color: white; text-decoration: none; font-weight: bold; padding: 14px; border-radius: 12px; box-shadow: 0 4px 12px rgba(37,211,102,0.3); display: flex; align-items: center; justify-content: center; }
+        .btn-redes { text-align: center; background: #111; color: white; border: none; font-weight: bold; padding: 14px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+        .btn-maps { color: #007bff; text-decoration: none; font-weight: 600; font-size: 13px; }
         
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-        }
-
-        .modal-enter {
-            opacity: 0;
-            transform: scale(0.95) translateY(10px);
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .modal-enter-active {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-        }
+        /* Modal Elegante */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 999; padding: 20px; }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        .modal-content { background: white; width: 100%; max-width: 400px; border-radius: 20px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(20px); transition: transform 0.3s ease; }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .modal-header h3 { font-size: 18px; color: #111; }
+        .btn-fechar { background: #f0f0f0; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #666; }
+        .lista-redes a { display: block; text-align: center; background: #f8f9fa; color: #333; text-decoration: none; font-weight: 600; padding: 14px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #eaeaea; transition: background 0.2s; }
+        .lista-redes a:hover { background: #eef2f5; }
+        
+        .footer { text-align: center; font-size: 11px; color: #aaa; margin-top: 32px; }
+        .error-msg { text-align: center; padding: 40px 20px; color: #ff4d4f; font-weight: bold; }
     </style>
 </head>
-<body class="min-h-screen text-slate-800 pb-28 pt-6 px-4 flex flex-col items-center justify-start">
+<body>
 
-    <!-- Seletor de Teste de Parceiros (Topo) -->
-    <div class="w-full max-w-md mb-4 bg-emerald-900/5 p-3 rounded-2xl flex items-center justify-between gap-3 text-xs border border-emerald-500/10">
-        <span class="font-medium text-slate-600 flex items-center gap-1.5">
-            <i data-lucide="building-2" class="w-4 h-4 text-emerald-600">
-            Simular Parceiro:
-        </span>
-        <select id="select-parceiro" onchange="trocarParceiro(this.value)" class="bg-white border border-slate-200 rounded-lg px-3 py-1.5 text-slate-700 font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 shadow-sm">
-            <!-- Preenchido via JS -->
-        </select>
+<div class="container" id="landing-page" style="display:none;">
+    <span class="badge">✓ Parceiro Verificado</span>
+    <h1 id="parceiro-nome">Carregando...</h1>
+    <p class="crmv" id="parceiro-crmv"></p>
+    <p class="subtitulo" id="parceiro-subtitulo"></p>
+    
+    <h2>Serviços & Especialidades</h2>
+    <div class="grid-servicos" id="parceiro-servicos"></div>
+    
+    <h2>Endereço</h2>
+    <div class="info-section">
+        <p id="parceiro-endereco"></p>
+        <a id="parceiro-maps" class="btn-maps" target="_blank">📍 Abrir no Google Maps</a>
     </div>
 
-    <!-- Conteúdo Principal da Landing Page -->
-    <main id="landing-page" class="w-full max-w-md glass-card rounded-3xl shadow-xl shadow-slate-200/60 p-6 md:p-8 relative overflow-hidden hidden">
-        
-        <!-- Header / Perfil -->
-        <div class="flex flex-col items-center text-center">
-            <div class="relative mb-4">
-                <div class="w-20 h-20 bg-gradient-to-tr from-emerald-500 to-teal-400 rounded-full flex items-center justify-center text-white shadow-lg shadow-emerald-500/30">
-                    <i data-lucide="stethoscope" class="w-10 h-10" id="icone-perfil"></i>
-                </div>
-                <span class="absolute -bottom-1 -right-1 bg-emerald-500 text-white p-1 rounded-full border-2 border-white" title="Verificado">
-                    <i data-lucide="check" class="w-3.5 h-3.5 stroke-[3]"></i>
-                </span>
-            </div>
+    <h2>Horários de Atendimento</h2>
+    <div class="info-section" id="parceiro-horarios"></div>
+    
+    <div class="footer">
+        © 2026 clinicaveterinariaitaqua.com.br • O portal oficial pet de Itaquá
+    </div>
 
-            <!-- Badge Verificado -->
-            <div class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 border border-emerald-200/60 font-bold text-xs px-3 py-1 rounded-full mb-3 shadow-sm">
-                <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
-                Parceiro Verificado
-            </div>
+    <!-- Barra Suspensa Fixo Inferior -->
+    <div class="botoes-acao">
+        <button class="btn-redes" onclick="abrirModal()">🌐 Redes Sociais</button>
+        <a id="parceiro-whats" class="btn-whats" target="_blank">💬 WhatsApp</a>
+    </div>
+</div>
 
-            <h1 id="parceiro-nome" class="text-2xl font-extrabold text-slate-900 tracking-tight leading-snug mb-1">
-                Carregando...
-            </h1>
-            
-            <p id="parceiro-crmv" class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3"></p>
-            
-            <p id="parceiro-subtitulo" class="text-sm text-slate-600 leading-relaxed max-w-xs">
-                ...
-            </p>
+<!-- Estrutura do Modal Moderno -->
+<div class="modal-overlay" id="modal-redes" onclick="fecharModalExterno(event)">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Conectar com o Parceiro</h3>
+            <button class="btn-fechar" onclick="fecharModal()">✕</button>
         </div>
-
-        <hr class="my-6 border-slate-100">
-
-        <!-- Serviços -->
-        <section class="mb-6">
-            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
-                <i data-lucide="sparkles" class="w-4 h-4 text-emerald-500"></i>
-                Serviços & Especialidades
-            </h2>
-            <div id="parceiro-servicos" class="space-y-2.5">
-                <!-- Injetado por JS -->
-            </div>
-        </section>
-
-        <!-- Endereço -->
-        <section class="mb-6">
-            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
-                <i data-lucide="map-pin" class="w-4 h-4 text-emerald-500"></i>
-                Endereço & Localização
-            </h2>
-            <div class="bg-slate-50/80 border border-slate-100 rounded-2xl p-4">
-                <p id="parceiro-endereco" class="text-sm text-slate-700 mb-3 leading-relaxed"></p>
-                <a id="parceiro-maps" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-emerald-600 hover:text-emerald-700 bg-emerald-50 hover:bg-emerald-100/80 transition-colors px-3.5 py-2 rounded-xl">
-                    <i data-lucide="navigation" class="w-3.5 h-3.5"></i>
-                    Abrir no Google Maps
-                </a>
-            </div>
-        </section>
-
-        <!-- Horários -->
-        <section class="mb-8">
-            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
-                <i data-lucide="clock" class="w-4 h-4 text-emerald-500"></i>
-                Horários de Atendimento
-            </h2>
-            <div id="parceiro-horarios" class="bg-slate-50/80 border border-slate-100 rounded-2xl p-4 space-y-2 text-sm text-slate-600">
-                <!-- Injetado por JS -->
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="text-center pt-2">
-            <p class="text-[11px] text-slate-400 font-medium">
-                © 2026 <span class="text-slate-600 font-semibold">clinicaveterinariaitaqua.com.br</span>
-            </p>
-            <p class="text-[10px] text-slate-400">O portal oficial pet de Itaquaqueceutba</p>
-        </footer>
-    </main>
-
-    <!-- Barra Fixa Inferior (CTA) -->
-    <div id="botoes-acao" class="fixed bottom-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-md z-40 hidden">
-        <div class="glass-card p-2 rounded-2xl shadow-2xl border border-white/40 flex items-center gap-2 backdrop-blur-xl">
-            <button onclick="abrirModal()" class="flex-1 bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 text-sm active:scale-[0.98]">
-                <i data-lucide="share-2" class="w-4 h-4"></i>
-                Redes Sociais
-            </button>
-            <a id="parceiro-whats" target="_blank" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-500/25 transition-all flex items-center justify-center gap-2 text-sm active:scale-[0.98]">
-                <i data-lucide="message-circle" class="w-4 h-4 fill-current"></i>
-                WhatsApp
-            </a>
+        <div class="lista-redes" id="modal-lista-redes">
+            <!-- Os links das redes entram aqui via JS -->
         </div>
     </div>
+</div>
 
-    <!-- Modal de Redes Sociais -->
-    <div id="modal-redes" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300" onclick="fecharModalExterno(event)">
-        <div class="modal-content bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl modal-enter">
-            <div class="flex justify-between items-center mb-5">
-                <h3 class="text-lg font-extrabold text-slate-900 flex items-center gap-2">
-                    <i data-lucide="globe" class="w-5 h-5 text-emerald-500"></i>
-                    Conectar
-                </h3>
-                <button onclick="fecharModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center transition-colors">
-                    <i data-lucide="x" class="w-4 h-4"></i>
-                </button>
-            </div>
-            
-            <div id="modal-lista-redes" class="space-y-2.5">
-                <!-- Injetado via JS -->
-            </div>
-        </div>
-    </div>
+<div id="error-container" class="error-msg" style="display:none;">
+    Parceiro não encontrado ou link inválido.
+</div>
 
-    <!-- Tela de Erro -->
-    <div id="error-container" class="w-full max-w-md bg-red-50 border border-red-200 text-red-700 rounded-2xl p-6 text-center hidden my-auto">
-        <i data-lucide="alert-circle" class="w-10 h-10 text-red-500 mx-auto mb-3"></i>
-        <h3 class="font-bold text-lg mb-1">Parceiro Não Encontrado</h3>
-        <p class="text-sm text-red-600">Verifique a URL acessada ou selecione um parceiro válido na lista do topo.</p>
-    </div>
+<script>
+    let dadosRedes = [];
 
-    <script>
-        // BANCO DE DADOS INTEGRADO (JSON UNIFICADO)
-        const DADOS_PARCEIROS = {
-            "clinica-sao-francisco": {
-                "nome": "Clínica Veterinária São Francisco",
-                "subtitulo": "Atendimento veterinário humanizado, exames laboratoriais, cirurgias e plantão de urgências em Itaquaquecetuba.",
-                "crmv": "CRMV-SP 12.345",
-                "whatsapp": "5511999999999",
-                "endereco": "Rua Capitão José Leite, 150 - Centro, Itaquaquecetuba - SP, 08570-020",
-                "maps_link": "https://maps.google.com/?q=Rua+Capitão+José+Leite,+150+-+Centro,+Itaquaquecetuba",
-                "horarios": ["Segunda a Sexta: 08:00 - 20:00", "Sábado: 08:00 - 18:00", "Domingos e Feriados: Plantão Sob Consulta"],
-                "redes": [
-                    {"plataforma": "Instagram", "link": "https://instagram.com"},
-                    {"plataforma": "Facebook", "link": "https://facebook.com"}
-                ],
-                "servicos": [
-                    {"titulo": "Consultas Médicas", "desc": "Geral, dermatologia e ortopedia veterinária."},
-                    {"titulo": "Vacinação Importada", "desc": "V8/V10, Antirrábica e V4/V5 para felinos."},
-                    {"titulo": "Cirurgias Gerais", "desc": "Centro cirúrgico completo com monitorização contínua."}
-                ]
-            },
-            "petshop-exemplo": {
-                "nome": "Pet Shop Exemplo Itaquá",
-                "subtitulo": "O melhor banho, tosa e rações da região com serviço de leva e traz gratuito.",
-                "crmv": "",
-                "whatsapp": "5511988888888",
-                "endereco": "Avenida Principal, 500 - Vila Augusta, Itaquaquecetuba - SP",
-                "maps_link": "https://maps.google.com/?q=Avenida+Principal,+500",
-                "horarios": ["Segunda a Sábado: 09:00 - 18:00"],
-                "redes": [
-                    {"plataforma": "Instagram", "link": "https://instagram.com"},
-                    {"plataforma": "TikTok", "link": "https://tiktok.com"}
-                ],
-                "servicos": [
-                    {"titulo": "Banho e Tosa Premium", "desc": "Produtos hipoalergênicos e profissionais qualificados."},
-                    {"titulo": "Taxi Pet Gratuito", "desc": "Buscamos e entregamos seu pet com segurança no seu bairro."}
-                ]
-            }
-        };
+    async function carregarParceiro() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const parceiroId = urlParams.get('id');
 
-        let dadosRedesAtuais = [];
-
-        function carregarSeletor() {
-            const select = document.getElementById('select-parceiro');
-            select.innerHTML = '';
-            
-            Object.keys(DADOS_PARCEIROS).forEach(key => {
-                const opt = document.createElement('option');
-                opt.value = key;
-                opt.textContent = DADOS_PARCEIROS[key].nome;
-                select.appendChild(opt);
-            });
+        if (!parceiroId) {
+            document.getElementById('error-container').style.display = 'block';
+            return;
         }
 
-        function renderizarParceiro(parceiroId) {
-            const p = DADOS_PARCEIROS[parceiroId];
+        try {
+            const resposta = await fetch('parceiros.json');
+            const dados = await resposta.json();
+            const p = dados[parceiroId];
 
             if (!p) {
-                document.getElementById('landing-page').classList.add('hidden');
-                document.getElementById('botoes-acao').classList.add('hidden');
-                document.getElementById('error-container').classList.remove('hidden');
+                document.getElementById('error-container').style.display = 'block';
                 return;
             }
 
-            document.getElementById('error-container').classList.add('hidden');
-            
-            // Preenche Informações Básicas
             document.getElementById('parceiro-nome').innerText = p.nome;
             document.getElementById('parceiro-subtitulo').innerText = p.subtitulo;
             document.getElementById('parceiro-endereco').innerText = p.endereco;
-            document.getElementById('parceiro-whats').href = `https://wa.me/${p.whatsapp}?text=Olá!%20Vim%20pelo%20portal%20Guia%20Pet.`;
+            document.getElementById('parceiro-whats').href = `https://wa.me{p.whatsapp}`;
             document.getElementById('parceiro-maps').href = p.maps_link;
             
-            // CRMV
-            const crmvEl = document.getElementById('parceiro-crmv');
-            if (p.crmv) {
-                crmvEl.innerText = p.crmv;
-                crmvEl.style.display = 'block';
+            if(p.crmv) {
+                document.getElementById('parceiro-crmv').innerText = p.crmv;
             } else {
-                crmvEl.style.display = 'none';
+                document.getElementById('parceiro-crmv').style.display = 'none';
             }
 
-            // Redes Sociais
-            dadosRedesAtuais = p.redes || [];
+            // Guarda as redes sociais para o modal
+            dadosRedes = p.redes || [];
 
-            // Serviços
+            // Preenche Serviços
             const servicosDiv = document.getElementById('parceiro-servicos');
-            servicosDiv.innerHTML = p.servicos.map(s => `
-                <div class="bg-slate-50/80 border border-slate-100 p-3.5 rounded-2xl hover:border-emerald-200 transition-colors">
-                    <div class="font-bold text-sm text-slate-800 mb-0.5">${s.titulo}</div>
-                    <div class="text-xs text-slate-500 leading-normal">${s.desc}</div>
-                </div>
-            `).join('');
-
-            // Horários
-            const horariosDiv = document.getElementById('parceiro-horarios');
-            horariosDiv.innerHTML = p.horarios.map(h => `
-                <div class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                    <span>${h}</span>
-                </div>
-            `).join('');
-
-            // Mostra containers
-            document.getElementById('landing-page').classList.remove('hidden');
-            document.getElementById('botoes-acao').classList.remove('hidden');
-            
-            // Atualiza o select
-            document.getElementById('select-parceiro').value = parceiroId;
-
-            // Recarrega ícones Lucide
-            lucide.createIcons();
-        }
-
-        function trocarParceiro(id) {
-            const newUrl = `${window.location.pathname}?id=${id}`;
-            window.history.pushState({ id }, '', newUrl);
-            renderizarParceiro(id);
-        }
-
-        // Funções do Modal
-        function abrirModal() {
-            const listaDiv = document.getElementById('modal-lista-redes');
-            
-            if (dadosRedesAtuais.length === 0) {
-                listaDiv.innerHTML = `
-                    <div class="text-center py-6 text-slate-400 text-xs">
-                        Este parceiro não cadastrou redes sociais.
+            p.servicos.forEach(s => {
+                servicosDiv.innerHTML += `
+                    <div class="servico-card">
+                        <div class="servico-titulo">${s.titulo}</div>
+                        <div class="servico-desc">${s.desc}</div>
                     </div>`;
-            } else {
-                listaDiv.innerHTML = dadosRedesAtuais.map(r => `
-                    <a href="${r.link}" target="_blank" class="flex items-center justify-between bg-slate-50 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 font-bold p-3.5 rounded-2xl border border-slate-100 hover:border-emerald-200 transition-all text-sm group">
-                        <span class="flex items-center gap-2.5">
-                            <i data-lucide="external-link" class="w-4 h-4 text-slate-400 group-hover:text-emerald-500"></i>
-                            ${r.plataforma}
-                        </span>
-                        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 group-hover:text-emerald-500"></i>
-                    </a>
-                `).join('');
-            }
+            });
 
-            const modal = document.getElementById('modal-redes');
-            const content = modal.querySelector('.modal-content');
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            content.classList.add('modal-enter-active');
-            lucide.createIcons();
+            // Preenche Horários
+            const horariosDiv = document.getElementById('parceiro-horarios');
+            p.horarios.forEach(h => {
+                horariosDiv.innerHTML += `<p>• ${h}</p>`;
+            });
+
+            document.getElementById('landing-page').style.display = 'block';
+
+        } catch (erro) {
+            console.error("Erro ao carregar dados:", erro);
+            document.getElementById('error-container').style.display = 'block';
+        }
+    }
+
+    // Funções de Controle do Modal
+    function abrirModal() {
+        const listaDiv = document.getElementById('modal-lista-redes');
+        listaDiv.innerHTML = ''; // Limpa antes de renderizar
+
+        if(dadosRedes.length === 0) {
+            listaDiv.innerHTML = '<p style="text-align:center; color:#999; font-size:14px;">Este parceiro não cadastrou redes sociais.</p>';
+        } else {
+            dadosRedes.forEach(r => {
+                listaDiv.innerHTML += `<a href="${r.link}" target="_blank">🔗 Acessar ${r.plataforma}</a>`;
+            });
         }
 
-        function fecharModal() {
-            const modal = document.getElementById('modal-redes');
-            const content = modal.querySelector('.modal-content');
-            content.classList.remove('modal-enter-active');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-        }
+        document.getElementById('modal-redes').classList.add('active');
+    }
 
-        function fecharModalExterno(event) {
-            if (event.target.id === 'modal-redes') {
-                fecharModal();
-            }
-        }
+    function fecharModal() {
+        document.getElementById('modal-redes').classList.remove('active');
+    }
 
-        // Inicialização
-        window.addEventListener('DOMContentLoaded', () => {
-            carregarSeletor();
-            const urlParams = new URLSearchParams(window.location.search);
-            const parceiroId = urlParams.get('id') || 'clinica-sao-francisco';
-            renderizarParceiro(parceiroId);
-        });
-    </script>
+    function fecharModalExterno(event) {
+        if (event.target.id === 'modal-redes') {
+            fecharModal();
+        }
+    }
+
+    carregarParceiro();
+</script>
 </body>
 </html>
