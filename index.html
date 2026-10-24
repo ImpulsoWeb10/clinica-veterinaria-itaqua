@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clínica Vet São Francisco - Parceiro Verificado | clinicaveterinariaitaqua.com.br</title>
+    <title>Portal Pet Itaquá | Guia Oficial de Parceiros</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome para Ícones -->
@@ -13,199 +13,138 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased pb-24 md:pb-12">
+<body class="bg-slate-50 text-slate-800 antialiased pb-16">
 
-    <!-- Topbar Banner do Portal -->
-    <header class="bg-emerald-900 text-emerald-100 text-xs sm:text-sm py-2.5 px-4 sticky top-0 z-40 border-b border-emerald-800 shadow-sm">
+    <!-- Topbar Principal com o Botão de Parceiros Verificados -->
+    <header class="bg-emerald-900 text-emerald-100 text-xs sm:text-sm py-3 px-4 sticky top-0 z-40 border-b border-emerald-800 shadow-sm">
         <div class="max-w-4xl mx-auto flex items-center justify-between">
-            <a href="https://clinicaveterinariaitaqua.com.br" class="flex items-center gap-2 font-semibold hover:text-white transition">
+            <a href="index.html" class="flex items-center gap-2 font-bold text-white hover:text-emerald-300 transition">
                 <i class="fa-solid fa-paw text-emerald-400"></i>
                 <span>clinicaveterinariaitaqua.com.br</span>
             </a>
-            <span class="inline-flex items-center gap-1.5 bg-emerald-800/80 text-emerald-300 px-2.5 py-1 rounded-full text-[11px] font-medium border border-emerald-700/50">
-                <i class="fa-solid fa-circle-check text-emerald-400"></i> Parceiro Verificado
-            </span>
+            
+            <!-- Botão à Esquerda do Selo para abrir a Lista de Parceiros -->
+            <div class="relative">
+                <button onclick="toggleModalParceiros()" class="inline-flex items-center gap-1.5 bg-emerald-800 hover:bg-emerald-700 text-white px-3.5 py-1.5 rounded-full text-xs font-bold border border-emerald-700/60 transition shadow-sm">
+                    <i class="fa-solid fa-shield-cat text-emerald-400"></i> Parceiros Verificados <i class="fa-solid fa-chevron-down text-[10px] ml-1"></i>
+                </button>
+
+                <!-- Menu Dropdown / Lista Dinâmica -->
+                <div id="dropdown-parceiros" class="hidden absolute right-0 mt-2 w-72 bg-white rounded-2xl shadow-2xl border border-slate-100 py-2 z-50 text-slate-800">
+                    <div class="px-4 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 flex items-center justify-between">
+                        <span>Estabelecimentos</span>
+                        <i class="fa-solid fa-paw text-emerald-500"></i>
+                    </div>
+                    <div id="lista-parceiros-dropdown" class="max-h-64 overflow-y-auto divide-y divide-slate-50">
+                        <!-- Preenchido automaticamente via JavaScript -->
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- Main Container -->
-    <main class="max-w-4xl mx-auto px-4 pt-6 space-y-6">
+    <!-- Conteúdo da Página Principal (Portal) -->
+    <main class="max-w-4xl mx-auto px-4 pt-8 space-y-8">
+        
+        <!-- Hero Section -->
+        <section class="text-center space-y-3 py-6">
+            <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                Guia Oficial de Itaquaquecetuba-SP
+            </span>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                Encontre os Melhores Profissionais Pet
+            </h1>
+            <p class="text-sm sm:text-base text-slate-600 max-w-xl mx-auto">
+                Clínicas veterinárias, pet shops e serviços especializados verificados para garantir o melhor cuidado para o seu pet.
+            </p>
+        </section>
 
-        <!-- Banner Hero Card -->
-        <section class="bg-white rounded-2xl shadow-sm border border-slate-200/80 overflow-hidden">
-            <!-- Capa da Clínica -->
-            <div class="h-44 sm:h-60 bg-gradient-to-r from-emerald-600 to-teal-700 relative">
-                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80" 
-                     alt="Fachada e Atendimento Veterinário" 
-                     class="w-full h-full object-cover opacity-35 mix-blend-overlay">
-                <div class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/10 flex items-center gap-1.5">
-                    <i class="fa-solid fa-location-dot text-emerald-400"></i> Bairro Centro - Itaquá
-                </div>
-            </div>
-
-            <!-- Perfil / Logo & Título -->
-            <div class="px-6 pb-6 relative pt-0">
-                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 -mt-14 sm:-mt-16 mb-4">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&w=300&q=80" 
-                             alt="Logo Clínica Vet São Francisco" 
-                             class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover border-4 border-white shadow-md bg-white">
-                        <span class="absolute -bottom-1 -right-1 bg-emerald-500 text-white text-[10px] p-1.5 rounded-full border-2 border-white" title="Verificado">
-                            <i class="fa-solid fa-check"></i>
-                        </span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span class="inline-flex items-center gap-1 bg-amber-50 text-amber-700 font-bold px-3 py-1 rounded-lg border border-amber-200 text-sm">
-                            <i class="fa-solid fa-star text-amber-400"></i> 4.9
-                        </span>
-                        <span class="text-xs text-slate-500 font-medium">(+120 avaliações no Google)</span>
-                    </div>
-                </div>
-
-                <div>
-                    <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                        Clínica Veterinária São Francisco
-                    </h1>
-                    <p class="text-slate-600 text-sm sm:text-base mt-1.5 leading-relaxed">
-                        Atendimento veterinário humanizado, exames laboratoriais, cirurgias e plantão de urgências em Itaquaquecetuba.
-                    </p>
-                </div>
-
-                <!-- Badges de Destaque -->
-                <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-100">
-                    <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-2.5 py-1 rounded-md">
-                        <i class="fa-solid fa-clock text-slate-500 mr-1"></i> Seg a Sáb: 08h às 20h
-                    </span>
-                    <span class="bg-red-50 text-red-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-red-100">
-                        <i class="fa-solid fa-ambulance mr-1"></i> Atendimento de Urgência
-                    </span>
-                    <span class="bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-emerald-100">
-                        <i class="fa-solid fa-shield-cat mr-1"></i> CRMV-SP 12.345
-                    </span>
-                </div>
+        <!-- Grade de Parceiros em Destaque (Gerada Automática pelo JSON) -->
+        <section>
+            <h2 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-store text-emerald-600"></i> Estabelecimentos em Destaque
+            </h2>
+            <div id="grid-parceiros-destaque" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Cards injetados via JavaScript -->
             </div>
         </section>
 
-        <!-- Grade Principal: Serviços e Horários -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-            <!-- Coluna Principal (2 cols): Serviços & Sobre -->
-            <div class="md:col-span-2 space-y-6">
-
-                <!-- Catálogo de Serviços -->
-                <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80">
-                    <h2 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-stethoscope text-emerald-600"></i> Serviços & Especialidades
-                    </h2>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-100 hover:border-emerald-200 transition">
-                            <div class="font-semibold text-slate-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-user-doctor text-emerald-600"></i> Consultas Médicas
-                            </div>
-                            <p class="text-xs text-slate-500 mt-1">Geral, dermatologia e ortopedia veterinária.</p>
-                        </div>
-
-                        <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-100 hover:border-emerald-200 transition">
-                            <div class="font-semibold text-slate-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-syringe text-emerald-600"></i> Vacinação Importada
-                            </div>
-                            <p class="text-xs text-slate-500 mt-1">V8/V10, Antirrábica e V4/V5 para felinos.</p>
-                        </div>
-
-                        <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-100 hover:border-emerald-200 transition">
-                            <div class="font-semibold text-slate-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-vial text-emerald-600"></i> Exames & Ultrassom
-                            </div>
-                            <p class="text-xs text-slate-500 mt-1">Laboratório próprio com resultado no mesmo dia.</p>
-                        </div>
-
-                        <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-100 hover:border-emerald-200 transition">
-                            <div class="font-semibold text-slate-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-shower text-emerald-600"></i> Banho e Tosa
-                            </div>
-                            <p class="text-xs text-slate-500 mt-1">Tosa higiênica, na tesoura e hidratação.</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Galeria / Estrutura -->
-                <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80">
-                    <h2 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-images text-emerald-600"></i> Conheça Nossa Estrutura
-                    </h2>
-                    <div class="grid grid-cols-3 gap-3">
-                        <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=400&q=80" alt="Consultório" class="w-full h-24 sm:h-32 object-cover rounded-xl shadow-sm">
-                        <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=400&q=80" alt="Centro Cirúrgico" class="w-full h-24 sm:h-32 object-cover rounded-xl shadow-sm">
-                        <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=400&q=80" alt="Recepção Pet" class="w-full h-24 sm:h-32 object-cover rounded-xl shadow-sm">
-                    </div>
-                </section>
-
-            </div>
-
-            <!-- Coluna Lateral (1 col): Localização & Informações -->
-            <div class="space-y-6">
-
-                <!-- Card de Localização -->
-                <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80 space-y-4">
-                    <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
-                        <i class="fa-solid fa-location-dot text-emerald-600"></i> Endereço
-                    </h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        Rua Capitão José Leite, 150 - Centro<br>
-                        Itaquaquecetuba - SP, 08570-020
-                    </p>
-                    
-                    <a href="https://maps.google.com" target="_blank" 
-                       class="inline-flex items-center justify-center w-full gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold py-2.5 rounded-xl transition">
-                        <i class="fa-solid fa-route text-emerald-600"></i> Abrir no Waze / Google Maps
-                    </a>
-                </section>
-
-                <!-- Horário de Funcionamento -->
-                <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80 space-y-3">
-                    <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
-                        <i class="fa-solid fa-calendar-days text-emerald-600"></i> Horários
-                    </h3>
-                    <ul class="text-xs space-y-2 text-slate-600">
-                        <li class="flex justify-between py-1 border-b border-slate-100">
-                            <span>Segunda a Sexta:</span>
-                            <span class="font-semibold text-slate-900">08:00 - 20:00</span>
-                        </li>
-                        <li class="flex justify-between py-1 border-b border-slate-100">
-                            <span>Sábado:</span>
-                            <span class="font-semibold text-slate-900">08:00 - 18:00</span>
-                        </li>
-                        <li class="flex justify-between py-1 text-red-600 font-medium">
-                            <span>Domingos e Feriados:</span>
-                            <span>Plantão Sob Consulta</span>
-                        </li>
-                    </ul>
-                </section>
-
-            </div>
-
-        </div>
-
     </main>
 
-    <!-- Footer Discreto -->
-    <footer class="mt-12 py-6 text-center text-xs text-slate-400 border-t border-slate-200">
+    <!-- Footer -->
+    <footer class="mt-16 py-6 text-center text-xs text-slate-400 border-t border-slate-200">
         <p>© 2026 clinicaveterinariaitaqua.com.br • O portal oficial da saúde pet em Itaquaquecetuba-SP</p>
     </footer>
 
-    <!-- BOTÃO FIXO DE AGENDAMENTO VIA WHATSAPP (Call To Action Flutuante) -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md p-3 border-t border-slate-200/80 z-50 shadow-lg md:relative md:bg-transparent md:border-none md:p-0 md:max-w-4xl md:mx-auto md:-mt-16 md:mb-8">
-        <div class="max-w-4xl mx-auto px-2">
-            <!-- Link da API com a mensagem pré-formatada do portal -->
-            <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Vi%20o%20perfil%20da%20Cl%C3%ADnica%20S%C3%A3o%20Francisco%20no%20portal%20clinicaveterinariaitaqua.com.br%20e%20gostaria%20de%20agendar%20uma%20consulta." 
-               target="_blank" 
-               class="flex items-center justify-center gap-3 bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-emerald-600/30 text-base transition-all transform active:scale-[0.99] text-center w-full">
-                <i class="fa-brands fa-whatsapp text-2xl"></i>
-                <span>Agendar Consulta via WhatsApp</span>
-            </a>
-        </div>
-    </div>
+    <!-- Script de Sincronização Automática -->
+    <script>
+        async function carregarPortal() {
+            try {
+                const resposta = await fetch('parceiros.json');
+                const dados = await resposta.json();
 
+                const dropdownLista = document.getElementById('lista-parceiros-dropdown');
+                const gridDestaque = document.getElementById('grid-parceiros-destaque');
+                
+                dropdownLista.innerHTML = '';
+                gridDestaque.innerHTML = '';
+
+                // Varre cada parceiro cadastrado no JSON
+                Object.keys(dados).forEach(id => {
+                    const p = dados[id];
+                    const linkPagina = `parceiro.html?id=${id}`;
+
+                    // 1. Preenche o Dropdown do Botão
+                    const itemDrop = document.createElement('a');
+                    itemDrop.href = linkPagina;
+                    itemDrop.className = "flex items-center gap-3 px-4 py-3 hover:bg-emerald-50 transition group";
+                    itemDrop.innerHTML = `
+                        <img src="${p.logo_img}" class="w-9 h-9 rounded-xl object-cover border border-slate-200 bg-white">
+                        <div class="overflow-hidden">
+                            <div class="font-bold text-xs text-slate-800 group-hover:text-emerald-700 truncate">${p.nome}</div>
+                            <div class="text-[10px] text-slate-400 truncate"><i class="fa-solid fa-location-dot text-emerald-500"></i> ${p.bairro}</div>
+                        </div>
+                    `;
+                    dropdownLista.appendChild(itemDrop);
+
+                    // 2. Preenche os Cards de Destaque na Página Principal
+                    const card = document.createElement('a');
+                    card.href = linkPagina;
+                    card.className = "bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-emerald-300 transition flex items-center gap-4 group";
+                    card.innerHTML = `
+                        <img src="${p.logo_img}" class="w-16 h-16 rounded-xl object-cover border border-slate-100 shadow-sm">
+                        <div class="flex-1 min-w-0">
+                            <span class="inline-block bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-md mb-1">
+                                Verificado ✓
+                            </span>
+                            <h3 class="font-bold text-slate-900 text-sm group-hover:text-emerald-600 truncate">${p.nome}</h3>
+                            <p class="text-xs text-slate-500 truncate mt-0.5">${p.subtitulo}</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-emerald-500 text-sm mr-2"></i>
+                    `;
+                    gridDestaque.appendChild(card);
+                });
+
+            } catch (erro) {
+                console.error("Erro ao carregar os parceiros:", erro);
+            }
+        }
+
+        function toggleModalParceiros() {
+            const dropdown = document.getElementById('dropdown-parceiros');
+            dropdown.classList.toggle('hidden');
+        }
+
+        // Fecha o menu ao clicar fora
+        window.addEventListener('click', function(e) {
+            const dropdown = document.getElementById('dropdown-parceiros');
+            const btn = e.target.closest('button');
+            if (!btn && !dropdown.contains(e.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+
+        carregarPortal();
+    </script>
 </body>
 </html>
