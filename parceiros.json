@@ -30,4 +30,35 @@
       "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=400&q=80"
     ]
   }
-}
+},
+"amor-por-patinhas": {
+    "nome": "Clínica Veterinária Popular Amor por Patinhas",
+    "subtitulo": "Atendimento veterinário popular de qualidade, consultas, exames, cirurgias e castrações em Itaquaquecetuba.",
+    "bairro": "Estância Fraternidade",
+    "crmv": "CRMV-SP Verificado",
+    "whatsapp": "5511910203909",
+    "whatsapp_msg": "Olá! Vi o perfil da Amor por Patinhas no portal clinicaveterinariaitaqua.com.br e gostaria de obter informações.",
+    "endereco": "Rua Turmalinas, 855 - Estância Fraternidade, Itaquaquecetuba - SP, 08589-000",
+    "maps_link": "https://maps.google.com/?q=Rua+Turmalinas,+855+-+Estância+Fraternidade,+Itaquaquecetuba",
+    "avaliacao": "4.8",
+    "total_avaliacoes": "95",
+    "capa_img": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80",
+    "logo_img": "https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&w=300&q=80",
+    "horarios_resumo": "Seg a Sáb: 08h às 18h",
+    "horarios_lista": [
+      {"dia": "Segunda a Sexta", "hora": "08:00 - 18:00", "urgencia": false},
+      {"dia": "Sábado", "hora": "08:00 - 14:00", "urgencia": false},
+      {"dia": "Domingos e Feriados", "hora": "Fechado", "urgencia": true}
+    ],
+    "servicos": [
+      {"titulo": "Consultas Veterinárias", "desc": "Atendimento clínico geral com preço popular e cuidado humanizado.", "icone": "fa-user-doctor"},
+      {"titulo": "Cirurgias & Castração", "desc": "Cirurgias em geral, tecidos moles, ortopedia e castrações.", "icone": "fa-scissors"},
+      {"titulo": "Procedimentos Oculares & Odonto", "desc": "Tratamento dental, tartarectomia e atendimento oftalmológico.", "icone": "fa-tooth"},
+      {"titulo": "Farmácia Veterinária", "desc": "Medicamentos e vacinas para o tratamento do seu pet.", "icone": "fa-pills"}
+    ],
+    "galeria": [
+      "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=400&q=80"
+    ]
+  }
