@@ -1,0 +1,34 @@
+{
+  "clinica-sao-francisco": {
+    "nome": "Clínica Veterinária São Francisco",
+    "subtitulo": "Atendimento veterinário humanizado, exames laboratoriais, cirurgias e plantão de urgências em Itaquaquecetuba.",
+    "crmv": "CRMV-SP 12.345",
+    "whatsapp": "5511999999999",
+    "endereco": "Rua Capitão José Leite, 150 - Centro, Itaquaquecetuba - SP, 08570-020",
+    "maps_link": "https://google.com",
+    "horarios": ["Segunda a Sexta: 08:00 - 20:00", "Sábado: 08:00 - 18:00", "Domingos e Feriados: Plantão Sob Consulta"],
+    "redes": [
+      {"plataforma": "Instagram", "link": "https://instagram.com"},
+      {"plataforma": "Facebook", "link": "https://facebook.com"}
+    ],
+    "servicos": [
+      {"titulo": "Consultas Médicas", "desc": "Geral, dermatologia e ortopedia veterinária."},
+      {"titulo": "Vacinação Importada", "desc": "V8/V10, Antirrábica e V4/V5 para felinos."}
+    ]
+  },
+  "petshop-exemplo": {
+    "nome": "Pet Shop Exemplo Itaquá",
+    "subtitulo": "O melhor banho, tosa e rações da região com leva e traz gratuito.",
+    "crmv": "",
+    "whatsapp": "5511988888888",
+    "endereco": "Avenida Principal, 500 - Vila Augusta",
+    "maps_link": "https://google.com",
+    "horarios": ["Segunda a Sábado: 09:00 - 18:00"],
+    "redes": [
+      {"plataforma": "Instagram", "link": "https://instagram.com"}
+    ],
+    "servicos": [
+      {"titulo": "Banho e Tosa Premium", "desc": "Produtos hipoalergênicos e profissionais qualificados."}
+    ]
+  }
+}
