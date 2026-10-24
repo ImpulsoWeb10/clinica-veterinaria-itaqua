@@ -3,180 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parceiro Verificado</title>
+    <title id="page-title">Portal Pet Itaquá | Parceiro Verificado</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f4f7f6; color: #333; padding: 20px; display: flex; justify-content: center; }
-        .container { max-width: 600px; width: 100%; background: #ffffff; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 24px; position: relative; padding-bottom: 90px; }
-        .badge { background: #e6f7ed; color: #1f9254; font-weight: bold; font-size: 12px; padding: 6px 12px; border-radius: 20px; display: inline-block; margin-bottom: 16px; }
-        h1 { font-size: 24px; color: #111; margin-bottom: 8px; }
-        .subtitulo { font-size: 15px; color: #666; line-height: 1.5; margin-bottom: 16px; }
-        .crmv { font-size: 13px; color: #999; font-weight: 600; margin-bottom: 24px; }
-        h2 { font-size: 18px; margin-bottom: 12px; color: #222; border-bottom: 2px solid #f0f0f0; padding-bottom: 6px; }
-        .grid-servicos { margin-bottom: 24px; }
-        .servico-card { background: #fafafa; padding: 12px; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #007bff; }
-        .servico-titulo { font-weight: bold; font-size: 14px; margin-bottom: 2px; }
-        .servico-desc { font-size: 13px; color: #666; }
-        .info-section { font-size: 14px; margin-bottom: 16px; color: #444; }
-        .info-section p { margin-bottom: 6px; }
-        
-        /* Área de Botões Fixos Embaixo */
-        .botoes-acao { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); max-width: 560px; z-index: 99; }
-        .btn-whats { text-align: center; background: #25d366; color: white; text-decoration: none; font-weight: bold; padding: 14px; border-radius: 12px; box-shadow: 0 4px 12px rgba(37,211,102,0.3); display: flex; align-items: center; justify-content: center; }
-        .btn-redes { text-align: center; background: #111; color: white; border: none; font-weight: bold; padding: 14px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; }
-        .btn-maps { color: #007bff; text-decoration: none; font-weight: 600; font-size: 13px; }
-        
-        /* Modal Elegante */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 999; padding: 20px; }
-        .modal-overlay.active { opacity: 1; pointer-events: all; }
-        .modal-content { background: white; width: 100%; max-width: 400px; border-radius: 20px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(20px); transition: transform 0.3s ease; }
-        .modal-overlay.active .modal-content { transform: translateY(0); }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .modal-header h3 { font-size: 18px; color: #111; }
-        .btn-fechar { background: #f0f0f0; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #666; }
-        .lista-redes a { display: block; text-align: center; background: #f8f9fa; color: #333; text-decoration: none; font-weight: 600; padding: 14px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #eaeaea; transition: background 0.2s; }
-        .lista-redes a:hover { background: #eef2f5; }
-        
-        .footer { text-align: center; font-size: 11px; color: #aaa; margin-top: 32px; }
-        .error-msg { text-align: center; padding: 40px 20px; color: #ff4d4f; font-weight: bold; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 antialiased pb-24 md:pb-12">
 
-<div class="container" id="landing-page" style="display:none;">
-    <span class="badge">✓ Parceiro Verificado</span>
-    <h1 id="parceiro-nome">Carregando...</h1>
-    <p class="crmv" id="parceiro-crmv"></p>
-    <p class="subtitulo" id="parceiro-subtitulo"></p>
-    
-    <h2>Serviços & Especialidades</h2>
-    <div class="grid-servicos" id="parceiro-servicos"></div>
-    
-    <h2>Endereço</h2>
-    <div class="info-section">
-        <p id="parceiro-endereco"></p>
-        <a id="parceiro-maps" class="btn-maps" target="_blank">📍 Abrir no Google Maps</a>
-    </div>
-
-    <h2>Horários de Atendimento</h2>
-    <div class="info-section" id="parceiro-horarios"></div>
-    
-    <div class="footer">
-        © 2026 clinicaveterinariaitaqua.com.br • O portal oficial pet de Itaquá
-    </div>
-
-    <!-- Barra Suspensa Fixo Inferior -->
-    <div class="botoes-acao">
-        <button class="btn-redes" onclick="abrirModal()">🌐 Redes Sociais</button>
-        <a id="parceiro-whats" class="btn-whats" target="_blank">💬 WhatsApp</a>
-    </div>
-</div>
-
-<!-- Estrutura do Modal Moderno -->
-<div class="modal-overlay" id="modal-redes" onclick="fecharModalExterno(event)">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3>Conectar com o Parceiro</h3>
-            <button class="btn-fechar" onclick="fecharModal()">✕</button>
+    <!-- Topbar Banner do Portal -->
+    <header class="bg-emerald-900 text-emerald-100 text-xs sm:text-sm py-2.5 px-4 sticky top-0 z-40 border-b border-emerald-800 shadow-sm">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            <a href="https://clinicaveterinariaitaqua.com.br" class="flex items-center gap-2 font-semibold hover:text-white transition">
+                <i class="fa-solid fa-paw text-emerald-400"></i>
+                <span>clinicaveterinariaitaqua.com.br</span>
+            </a>
+            <div class="flex items-center gap-3">
+                <!-- Seletor dinâmico caso queira testar múltiplos IDs sem mexer na URL -->
+                <select id="select-parceiro" onchange="trocarParceiro(this.value)" class="bg-emerald-800 text-emerald-200 text-xs rounded px-2 py-1 outline-none border border-emerald-700">
+                    <!-- Preenchido via JS -->
+                </select>
+                <span class="inline-flex items-center gap-1.5 bg-emerald-800/80 text-emerald-300 px-2.5 py-1 rounded-full text-[11px] font-medium border border-emerald-700/50">
+                    <i class="fa-solid fa-circle-check text-emerald-400"></i> Parceiro Verificado
+                </span>
+            </div>
         </div>
-        <div class="lista-redes" id="modal-lista-redes">
-            <!-- Os links das redes entram aqui via JS -->
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-4xl mx-auto px-4 pt-6 space-y-6">
+
+        <!-- Banner Hero Card -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200/80 overflow-hidden">
+            <div class="h-44 sm:h-60 bg-gradient-to-r from-emerald-600 to-teal-700 relative">
+                <img id="parceiro-capa" src="" alt="Capa" class="w-full h-full object-cover opacity-35 mix-blend-overlay">
+                <div class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/10 flex items-center gap-1.5">
+                    <i class="fa-solid fa-location-dot text-emerald-400"></i> <span id="parceiro-bairro">...</span>
+                </div>
+            </div>
+
+            <div class="px-6 pb-6 relative pt-0">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 -mt-14 sm:-mt-16 mb-4">
+                    <div class="relative">
+                        <img id="parceiro-logo" src="" alt="Logo" class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover border-4 border-white shadow-md bg-white">
+                        <span class="absolute -bottom-1 -right-1 bg-emerald-500 text-white text-[10px] p-1.5 rounded-full border-2 border-white" title="Verificado">
+                            <i class="fa-solid fa-check"></i>
+                        </span>
+                    </div>
+                    <div id="avaliacao-container" class="flex items-center gap-2">
+                        <span class="inline-flex items-center gap-1 bg-amber-50 text-amber-700 font-bold px-3 py-1 rounded-lg border border-amber-200 text-sm">
+                            <i class="fa-solid fa-star text-amber-400"></i> <span id="parceiro-avaliacao">5.0</span>
+                        </span>
+                        <span class="text-xs text-slate-500 font-medium">(<span id="parceiro-total-aval">0</span> avaliações no Google)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h1 id="parceiro-nome" class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Carregando...</h1>
+                    <p id="parceiro-subtitulo" class="text-slate-600 text-sm sm:text-base mt-1.5 leading-relaxed">...</p>
+                </div>
+
+                <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-100">
+                    <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-2.5 py-1 rounded-md">
+                        <i class="fa-solid fa-clock text-slate-500 mr-1"></i> <span id="parceiro-horario-resumo">...</span>
+                    </span>
+                    <span id="crmv-badge" class="bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-emerald-100">
+                        <i class="fa-solid fa-shield-cat mr-1"></i> <span id="parceiro-crmv">...</span>
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grade Principal: Serviços e Horários -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <div class="md:col-span-2 space-y-6">
+                <!-- Catálogo de Serviços -->
+                <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80">
+                    <h2 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-stethoscope text-emerald-600"></i> Serviços & Especialidades
+                    </h2>
+                    <div id="parceiro-servicos" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <!-- Injetado via JS -->
+                    </div>
+                </section>
+
+                <!-- Galeria -->
+                <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80">
+                    <h2 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-images text-emerald-600"></i> Conheça Nossa Estrutura
+                    </h2>
+                    <div id="parceiro-galeria" class="grid grid-cols-3 gap-3">
+                        <!-- Injetado via JS -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- Coluna Lateral -->
+            <div class="space-y-6">
+                <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80 space-y-4">
+                    <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
+                        <i class="fa-solid fa-location-dot text-emerald-600"></i> Endereço
+                    </h3>
+                    <p id="parceiro-endereco" class="text-xs text-slate-600 leading-relaxed">...</p>
+                    <a id="parceiro-maps" href="#" target="_blank" class="inline-flex items-center justify-center w-full gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold py-2.5 rounded-xl transition">
+                        <i class="fa-solid fa-route text-emerald-600"></i> Abrir no Waze / Google Maps
+                    </a>
+                </section>
+
+                <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80 space-y-3">
+                    <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
+                        <i class="fa-solid fa-calendar-days text-emerald-600"></i> Horários
+                    </h3>
+                    <ul id="parceiro-horarios-lista" class="text-xs space-y-2 text-slate-600">
+                        <!-- Injetado via JS -->
+                    </ul>
+                </section>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="mt-12 py-6 text-center text-xs text-slate-400 border-t border-slate-200">
+        <p>© 2026 clinicaveterinariaitaqua.com.br • O portal oficial da saúde pet em Itaquaquecetuba-SP</p>
+    </footer>
+
+    <!-- BOTÃO FIXO DE WHATSAPP -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md p-3 border-t border-slate-200/80 z-50 shadow-lg md:relative md:bg-transparent md:border-none md:p-0 md:max-w-4xl md:mx-auto md:-mt-16 md:mb-8">
+        <div class="max-w-4xl mx-auto px-2">
+            <a id="parceiro-whatsapp-btn" href="#" target="_blank" class="flex items-center justify-center gap-3 bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-emerald-600/30 text-base transition-all transform active:scale-[0.99] text-center w-full">
+                <i class="fa-brands fa-whatsapp text-2xl"></i>
+                <span id="whatsapp-texto-btn">Agendar Consulta via WhatsApp</span>
+            </a>
         </div>
     </div>
-</div>
 
-<div id="error-container" class="error-msg" style="display:none;">
-    Parceiro não encontrado ou link inválido.
-</div>
+    <!-- Script de Carregamento Dinâmico do JSON -->
+    <script>
+        let dadosGlobais = {};
 
-<script>
-    let dadosRedes = [];
+        async function carregarDados() {
+            try {
+                const resposta = await fetch('parceiros.json');
+                dadosGlobais = await resposta.json();
 
-    async function carregarParceiro() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const parceiroId = urlParams.get('id');
+                // Popular seletor de topo
+                const select = document.getElementById('select-parceiro');
+                select.innerHTML = '';
+                Object.keys(dadosGlobais).forEach(id => {
+                    const opt = document.createElement('option');
+                    opt.value = id;
+                    opt.textContent = dadosGlobais[id].nome;
+                    select.appendChild(opt);
+                });
 
-        if (!parceiroId) {
-            document.getElementById('error-container').style.display = 'block';
-            return;
+                // Ler parâmetro ?id= da URL ou pegar o primeiro padrão
+                const urlParams = new URLSearchParams(window.location.search);
+                const idUrl = urlParams.get('id');
+                const primeiroId = idUrl && dadosGlobais[idUrl] ? idUrl : Object.keys(dadosGlobais)[0];
+
+                select.value = primeiroId;
+                renderizarParceiro(primeiroId);
+
+            } catch (erro) {
+                console.error("Erro ao carregar parceiros.json:", erro);
+            }
         }
 
-        try {
-            const resposta = await fetch('parceiros.json');
-            const dados = await resposta.json();
-            const p = dados[parceiroId];
+        function trocarParceiro(id) {
+            window.history.pushState({}, '', `?id=${id}`);
+            renderizarParceiro(id);
+        }
 
-            if (!p) {
-                document.getElementById('error-container').style.display = 'block';
-                return;
-            }
+        function renderizarParceiro(id) {
+            const p = dadosGlobais[id];
+            if (!p) return;
 
-            document.getElementById('parceiro-nome').innerText = p.nome;
-            document.getElementById('parceiro-subtitulo').innerText = p.subtitulo;
-            document.getElementById('parceiro-endereco').innerText = p.endereco;
-            document.getElementById('parceiro-whats').href = `https://wa.me{p.whatsapp}`;
+            document.getElementById('page-title').textContent = `${p.nome} - Parceiro Verificado`;
+            document.getElementById('parceiro-capa').src = p.capa_img;
+            document.getElementById('parceiro-bairro').textContent = p.bairro;
+            document.getElementById('parceiro-logo').src = p.logo_img;
+            document.getElementById('parceiro-nome').textContent = p.nome;
+            document.getElementById('parceiro-subtitulo').textContent = p.subtitulo;
+            document.getElementById('parceiro-horario-resumo').textContent = p.horarios_resumo;
+            document.getElementById('parceiro-endereco').textContent = p.endereco;
             document.getElementById('parceiro-maps').href = p.maps_link;
-            
-            if(p.crmv) {
-                document.getElementById('parceiro-crmv').innerText = p.crmv;
+
+            // Avaliação
+            if (p.avaliacao) {
+                document.getElementById('parceiro-avaliacao').textContent = p.avaliacao;
+                document.getElementById('parceiro-total-aval').textContent = p.total_avaliacoes;
+                document.getElementById('avaliacao-container').style.display = 'flex';
             } else {
-                document.getElementById('parceiro-crmv').style.display = 'none';
+                document.getElementById('avaliacao-container').style.display = 'none';
             }
 
-            // Guarda as redes sociais para o modal
-            dadosRedes = p.redes || [];
+            // CRMV
+            if (p.crmv) {
+                document.getElementById('parceiro-crmv').textContent = p.crmv;
+                document.getElementById('crmv-badge').style.display = 'inline-block';
+            } else {
+                document.getElementById('crmv-badge').style.display = 'none';
+            }
 
-            // Preenche Serviços
+            // Serviços
             const servicosDiv = document.getElementById('parceiro-servicos');
-            p.servicos.forEach(s => {
-                servicosDiv.innerHTML += `
-                    <div class="servico-card">
-                        <div class="servico-titulo">${s.titulo}</div>
-                        <div class="servico-desc">${s.desc}</div>
-                    </div>`;
-            });
+            servicosDiv.innerHTML = p.servicos.map(s => `
+                <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-100 hover:border-emerald-200 transition">
+                    <div class="font-semibold text-slate-800 text-sm flex items-center gap-2">
+                        <i class="fa-solid ${s.icone || 'fa-check'} text-emerald-600"></i> ${s.titulo}
+                    </div>
+                    <p class="text-xs text-slate-500 mt-1">${s.desc}</p>
+                </div>
+            `).join('');
 
-            // Preenche Horários
-            const horariosDiv = document.getElementById('parceiro-horarios');
-            p.horarios.forEach(h => {
-                horariosDiv.innerHTML += `<p>• ${h}</p>`;
-            });
+            // Galeria
+            const galeriaDiv = document.getElementById('parceiro-galeria');
+            galeriaDiv.innerHTML = p.galeria.map(img => `
+                <img src="${img}" alt="Estrutura" class="w-full h-24 sm:h-32 object-cover rounded-xl shadow-sm">
+            `).join('');
 
-            document.getElementById('landing-page').style.display = 'block';
+            // Horários Lista
+            const horariosLista = document.getElementById('parceiro-horarios-lista');
+            horariosLista.innerHTML = p.horarios_lista.map(h => `
+                <li class="flex justify-between py-1 ${h.urgencia ? 'text-red-600 font-medium' : 'border-b border-slate-100'}">
+                    <span>${h.dia}:</span>
+                    <span class="${h.urgencia ? '' : 'font-semibold text-slate-900'}">${h.hora}</span>
+                </li>
+            `).join('');
 
-        } catch (erro) {
-            console.error("Erro ao carregar dados:", erro);
-            document.getElementById('error-container').style.display = 'block';
-        }
-    }
-
-    // Funções de Controle do Modal
-    function abrirModal() {
-        const listaDiv = document.getElementById('modal-lista-redes');
-        listaDiv.innerHTML = ''; // Limpa antes de renderizar
-
-        if(dadosRedes.length === 0) {
-            listaDiv.innerHTML = '<p style="text-align:center; color:#999; font-size:14px;">Este parceiro não cadastrou redes sociais.</p>';
-        } else {
-            dadosRedes.forEach(r => {
-                listaDiv.innerHTML += `<a href="${r.link}" target="_blank">🔗 Acessar ${r.plataforma}</a>`;
-            });
+            // WhatsApp Botão
+            const linkWhats = `https://wa.me/${p.whatsapp}?text=${encodeURIComponent(p.whatsapp_msg)}`;
+            document.getElementById('parceiro-whatsapp-btn').href = linkWhats;
         }
 
-        document.getElementById('modal-redes').classList.add('active');
-    }
-
-    function fecharModal() {
-        document.getElementById('modal-redes').classList.remove('active');
-    }
-
-    function fecharModalExterno(event) {
-        if (event.target.id === 'modal-redes') {
-            fecharModal();
-        }
-    }
-
-    carregarParceiro();
-</script>
+        carregarDados();
+    </script>
 </body>
 </html>
