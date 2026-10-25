@@ -1,98 +1,336 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-N29P7SEYWC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-N29P7SEYWC');
-</script>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clínicas Veterinárias em Itaquaquecetuba – SP | Portal Pet Itaquá</title>
-    <!-- Tailwind CSS CDN -->
+    <meta name="description" content="Guia independente de clínicas veterinárias, hospitais, serviços de saúde, vacinação e castração em Itaquaquecetuba e região do Alto Tietê. Encontre atendimento confiável para seu pet.">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N29P7SEYWC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-N29P7SEYWC');
+    </script>
+
+    <!-- TAILWIND CSS & FONT AWESOME -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome para Ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
-</head>
-<body class="bg-slate-50 text-slate-800 antialiased pb-16">
 
-    <!-- Topbar Principal com o Botão de Parceiros Verificados -->
-    <header class="bg-emerald-900 text-emerald-100 text-xs sm:text-sm py-3 px-4 sticky top-0 z-40 border-b border-emerald-800 shadow-sm">
-        <div class="max-w-4xl mx-auto flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-2 font-bold text-white hover:text-emerald-300 transition">
-                <i class="fa-solid fa-paw text-emerald-400"></i>
-                <span>clinicaveterinariaitaqua.com.br</span>
+    <!-- DADOS ESTRUTURADOS (SCHEMA.ORG / JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://www.clinicaveterinariaitaqua.com.br/#website",
+          "url": "https://www.clinicaveterinariaitaqua.com.br/",
+          "name": "Portal Pet Itaquá",
+          "description": "Guia independente de clínicas veterinárias, hospitais e serviços pet em Itaquaquecetuba – SP",
+          "inLanguage": "pt-BR"
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://www.clinicaveterinariaitaqua.com.br/#organization",
+          "name": "Portal Pet Itaquá",
+          "url": "https://www.clinicaveterinariaitaqua.com.br/"
+        }
+      ]
+    }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-500 selection:text-white">
+
+    <!-- Topbar & Header Profissional -->
+    <header class="bg-emerald-950 text-emerald-100 sticky top-0 z-50 border-b border-emerald-900 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white shadow-md group-hover:bg-emerald-500 transition">
+                    <i class="fa-solid fa-paw text-xl"></i>
+                </div>
+                <div>
+                    <span class="font-extrabold text-white text-lg tracking-tight block">Portal Pet Itaquá</span>
+                    <span class="text-[11px] text-emerald-400 font-medium block -mt-1">Guia Veterinário Regional</span>
+                </div>
             </a>
-            
-            <!-- Botão com Lista Suspensa Dinâmica -->
+
+            <!-- Menu de Navegação Desktop -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+                <a href="#inicio" class="hover:text-emerald-400 transition">Início</a>
+                <a href="#busca-clinicas" class="hover:text-emerald-400 transition">Encontrar Clínicas</a>
+                <a href="#servicos" class="hover:text-emerald-400 transition">Serviços</a>
+                <a href="#saude-animal" class="hover:text-emerald-400 transition">Saúde Animal</a>
+                <a href="#emergencia" class="text-amber-400 hover:text-amber-300 font-semibold flex items-center gap-1.5">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Emergência
+                </a>
+            </nav>
+
+            <!-- Botão com Menu Dropdown de Parceiros -->
             <div class="relative">
-                <button onclick="toggleModalParceiros()" class="inline-flex items-center gap-1.5 bg-emerald-800 hover:bg-emerald-700 text-white px-3.5 py-1.5 rounded-full text-xs font-bold border border-emerald-700/60 transition shadow-sm">
-                    <i class="fa-solid fa-shield-cat text-emerald-400"></i> Parceiros Verificados <i class="fa-solid fa-chevron-down text-[10px] ml-1"></i>
+                <button onclick="toggleModalParceiros()" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-md shadow-emerald-900/30">
+                    <i class="fa-solid fa-shield-cat"></i> Clínicas Parceiras <i class="fa-solid fa-chevron-down text-[10px] ml-1"></i>
                 </button>
 
-                <!-- Menu Dropdown -->
-                <div id="dropdown-parceiros" class="hidden absolute right-0 mt-2 w-72 bg-white rounded-2xl shadow-2xl border border-slate-100 py-2 z-50 text-slate-800">
-                    <div class="px-4 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 flex items-center justify-between">
-                        <span>Estabelecimentos</span>
-                        <i class="fa-solid fa-paw text-emerald-500"></i>
+                <!-- Dropdown de Parceiros -->
+                <div id="dropdown-parceiros" class="hidden absolute right-0 mt-3 w-80 bg-white rounded-2xl shadow-2xl border border-slate-100 py-3 z-50 text-slate-800">
+                    <div class="px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 flex items-center justify-between">
+                        <span>Estabelecimentos Aprovados</span>
+                        <i class="fa-solid fa-paw text-emerald-600"></i>
                     </div>
-                    <div id="lista-parceiros-dropdown" class="max-h-64 overflow-y-auto divide-y divide-slate-50">
-                        <!-- Preenchido automaticamente via JavaScript -->
+                    <div id="lista-parceiros-dropdown" class="max-h-72 overflow-y-auto divide-y divide-slate-50">
+                        <!-- Preenchido dinamicamente via JS -->
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Conteúdo da Página Principal -->
-    <main class="max-w-4xl mx-auto px-4 pt-8 space-y-8">
+    <!-- HERO PRINCIPAL IMPACTANTE -->
+    <section id="inicio" class="relative bg-gradient-to-b from-emerald-950 via-emerald-900 to-slate-900 text-white overflow-hidden py-16 lg:py-24">
+        <div class="absolute inset-0 opacity-15 mix-blend-overlay">
+            <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1600&q=80" alt="Veterinário e Pet" class="w-full h-full object-cover">
+        </div>
         
-        <!-- Hero Section -->
-        <section class="text-center space-y-3 py-6">
-            <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                Guia Oficial de Itaquaquecetuba-SP
-            </span>
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-                Clínicas Veterinárias em Itaquaquecetuba – SP
-            </h1>
-            <p class="text-sm sm:text-base text-slate-600 max-w-xl mx-auto">
-                Plataforma informativa para localizar estabelecimentos veterinários independentes e profissionais parceiros na região.
-            </p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 bg-emerald-800/80 text-emerald-300 px-3.5 py-1.5 rounded-full text-xs font-bold border border-emerald-700/60 shadow-sm">
+                    <i class="fa-solid fa-location-dot text-emerald-400"></i> Itaquaquecetuba – SP e Região
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                    Encontre clínicas veterinárias em <span class="text-emerald-400">Itaquaquecetuba</span> e região
+                </h1>
+                <p class="text-base sm:text-lg text-emerald-100/90 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                    Informação confiável, diretório de estabelecimentos verificados e orientações de saúde para ajudar você a encontrar o melhor atendimento para o seu melhor amigo.
+                </p>
+                
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                    <a href="#busca-clinicas" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-emerald-500/20 transition flex items-center gap-2 text-sm">
+                        <i class="fa-solid fa-magnifying-glass"></i> Encontrar Clínica
+                    </a>
+                    <a href="#servicos" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3.5 rounded-xl border border-white/20 transition flex items-center gap-2 text-sm backdrop-blur-sm">
+                        <i class="fa-solid fa-stethoscope"></i> Explorar Serviços
+                    </a>
+                </div>
+            </div>
+
+            <!-- Imagem Destacada Hero -->
+            <div class="lg:col-span-5 relative">
+                <div class="relative mx-auto max-w-md lg:max-w-none">
+                    <div class="absolute -inset-1.5 bg-gradient-to-r from-emerald-500 to-teal-400 rounded-3xl blur-lg opacity-30"></div>
+                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80" alt="Atendimento veterinário profissional" class="relative rounded-2xl shadow-2xl object-cover w-full h-[380px] border border-white/10">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BARRA DE BUSCA CENTRAL INTELIGENTE -->
+    <section id="busca-clinicas" class="max-w-5xl mx-auto px-4 -mt-10 relative z-20">
+        <div class="bg-white rounded-3xl shadow-xl border border-slate-200/80 p-6 sm:p-8 backdrop-blur-xl">
+            <h2 class="text-xl font-extrabold text-slate-900 mb-2 flex items-center gap-2">
+                <i class="fa-solid fa-filter text-emerald-600"></i> Buscador de Clínicas e Serviços
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mb-6">Selecione os filtros abaixo para localizar estabelecimentos cadastrados na rede de parceiros.</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Cidade</label>
+                    <select id="filtro-cidade" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        <option value="itaquaquecetuba">Itaquaquecetuba - SP</option>
+                        <option value="poa">Poá - SP (Em breve)</option>
+                        <option value="suzano">Suzano - SP (Em breve)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Bairro</label>
+                    <select id="filtro-bairro" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        <option value="todos">Todos os Bairros</option>
+                        <option value="centro">Centro</option>
+                        <option value="estancia-fraternidade">Estância Fraternidade</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Serviço Desejado</label>
+                    <select id="filtro-servico" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        <option value="todos">Todos os Serviços</option>
+                        <option value="consultas">Consultas Médicas</option>
+                        <option value="vacinacao">Vacinação</option>
+                        <option value="cirurgia">Cirurgia & Castração</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button onclick="executarBusca()" class="w-full bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-bold py-3.5 rounded-xl transition shadow-md shadow-emerald-600/30 flex items-center justify-center gap-2 text-sm">
+                <i class="fa-solid fa-magnifying-glass"></i> Pesquisar Estabelecimentos
+            </button>
+        </div>
+    </section>
+
+    <!-- CLÍNICAS PARCEIRAS EM DESTAQUE -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+        
+        <section>
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+                <div>
+                    <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest block mb-1">Diretório Verificado</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Clínicas e Estabelecimentos em Destaque</h2>
+                </div>
+                <p class="text-xs text-slate-500 max-w-xs">Dados fornecidos e aprovados diretamente pelos parceiros oficiais do portal.</p>
+            </div>
+
+            <div id="grid-parceiros-destaque" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Injetado dinamicamente via JS -->
+            </div>
         </section>
 
-        <!-- Grade de Parceiros em Destaque -->
-        <section>
-            <h2 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                <i class="fa-solid fa-store text-emerald-600"></i> Estabelecimentos em Destaque
-            </h2>
-            <div id="grid-parceiros-destaque" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <!-- Cards injetados via JavaScript -->
+        <!-- SEÇÃO VISUAL: SERVIÇOS -->
+        <section id="servicos">
+            <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+                <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest block">Guia de Especialidades</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Encontre o Serviço Certo para o seu Pet</h2>
+                <p class="text-sm text-slate-600">Conheça os principais procedimentos e cuidados veterinários oferecidos pelos estabelecimentos da nossa rede.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:border-emerald-300 hover:shadow-md transition space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-stethoscope"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base">Consultas Veterinárias</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Atendimento clínico geral, dermatologia, cardiologia e orientações para cães e gatos.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:border-emerald-300 hover:shadow-md transition space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-syringe"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base">Vacinação & Preventiva</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Imunização com vacinas importadas (V8/V10, antirrábica, V4/V5) e controle de parasitas.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:border-emerald-300 hover:shadow-md transition space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-scissors"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base">Cirurgias & Castração</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Procedimentos cirúrgicos seguros, suporte anestésico e campanhas de castração responsável.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:border-emerald-300 hover:shadow-md transition space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-vial"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base">Exames & Laboratório</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Análises clínicas completas, exames de sangue, ultrassonografia e diagnósticos rápidos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- GUIA DE SAÚDE ANIMAL -->
+        <section id="saude-animal" class="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200/80 shadow-sm space-y-8">
+            <div class="max-w-2xl">
+                <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest block mb-1">Conteúdo Educativo</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Guia de Saúde para Cães e Gatos</h2>
+                <p class="text-sm text-slate-600 mt-2">Orientações responsáveis para ajudar tutores a manterem o bem-estar de seus animais em dia.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 space-y-3">
+                    <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">Cães</span>
+                    <h3 class="font-bold text-slate-900 text-base">Calendário de Vacinação de Filhotes</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Entenda quais são as primeiras doses essenciais, reforços anuais e a importância da proteção contra raiva e cinomose.</p>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 space-y-3">
+                    <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">Gatos</span>
+                    <h3 class="font-bold text-slate-900 text-base">Adaptação e Caixa de Areia</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Dicas fundamentais sobre enriquecimento ambiental, higiene felina e como reduzir o estresse do seu gatinho em casa.</p>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 space-y-3">
+                    <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">Prevenção</span>
+                    <h3 class="font-bold text-slate-900 text-base">Sinais de Alerta e Rotina</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Saiba identificar mudanças de comportamento, perda de apetite ou apatia que exigem avaliação veterinária imediata.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DE EMERGÊNCIA VETERINÁRIA -->
+        <section id="emergencia" class="bg-gradient-to-br from-amber-500 to-orange-600 rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <div class="max-w-2xl relative z-10 space-y-4">
+                <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm">
+                    Atendimento Crítico
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold">Seu pet precisa de atendimento veterinário urgente?</h2>
+                <p class="text-sm sm:text-base text-amber-50 leading-relaxed">
+                    Dificuldade para respirar, convulsões, sangramentos intensos ou suspeita de intoxicação exigem contato imediato com um profissional. Consulte estabelecimentos com plantão ou emergência ativa na nossa lista de parceiros.
+                </p>
+                <div class="pt-2">
+                    <button onclick="toggleModalParceiros()" class="bg-white text-amber-900 font-bold px-6 py-3.5 rounded-xl shadow-lg hover:bg-amber-50 transition text-sm">
+                        <i class="fa-solid fa-phone"></i> Localizar Clínicas de Plantão
+                    </button>
+                </div>
             </div>
         </section>
 
     </main>
 
-    <!-- Rodapé -->
-    <footer class="mt-16 py-6 text-center text-xs text-slate-400 border-t border-slate-200 space-y-1">
-        <p>© 2026 clinicaveterinariaitaqua.com.br • O portal oficial da saúde pet em Itaquaquecetuba-SP</p>
-        <p class="text-[11px] text-slate-400">Aviso: Este portal é um diretório informativo independente e não substitui a consulta médica veterinária.</p>
+    <!-- RODAPÉ COMPLETO -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div class="space-y-3">
+                <div class="flex items-center gap-2 text-white font-bold text-sm">
+                    <i class="fa-solid fa-paw text-emerald-400"></i> Portal Pet Itaquá
+                </div>
+                <p class="leading-relaxed">Guia independente de clínicas veterinárias, hospitais e serviços em Itaquaquecetuba – SP e região do Alto Tietê.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3 uppercase tracking-wider text-[11px]">Navegação</h4>
+                <ul class="space-y-2">
+                    <li><a href="#inicio" class="hover:text-white transition">Início</a></li>
+                    <li><a href="#busca-clinicas" class="hover:text-white transition">Pesquisar Clínicas</a></li>
+                    <li><a href="#servicos" class="hover:text-white transition">Serviços Veterinários</a></li>
+                    <li><a href="#saude-animal" class="hover:text-white transition">Guia de Saúde Animal</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3 uppercase tracking-wider text-[11px]">Região Atendida</h4>
+                <ul class="space-y-2">
+                    <li><span class="text-slate-200 font-medium">Itaquaquecetuba – SP</span> (Principal)</li>
+                    <li>Poá – SP (Em expansão)</li>
+                    <li>Suzano – SP (Em expansão)</li>
+                    <li>Mogi das Cruzes – SP (Em expansão)</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3 uppercase tracking-wider text-[11px]">Aviso Legal</h4>
+                <p class="leading-relaxed text-[11px]">Este portal é um diretório informativo independente. Não realizamos consultas médicas, diagnósticos nem prestamos serviços veterinários diretos.</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 border-t border-slate-800 text-center text-[11px]">
+            <p>© 2026 clinicaveterinariaitaqua.com.br • Todos os direitos reservados.</p>
+        </div>
     </footer>
 
-    <!-- Script de Sincronização -->
+    <!-- SCRIPT DE SINCRONIZAÇÃO E BUSCA -->
     <script>
+        let dadosGlobais = {};
+
         async function carregarPortal() {
             try {
                 const resposta = await fetch('parceiros.json');
-                const dados = await resposta.json();
+                dadosGlobais = await resposta.json();
 
                 const dropdownLista = document.getElementById('lista-parceiros-dropdown');
                 const gridDestaque = document.getElementById('grid-parceiros-destaque');
@@ -100,11 +338,11 @@
                 dropdownLista.innerHTML = '';
                 gridDestaque.innerHTML = '';
 
-                Object.keys(dados).forEach(id => {
-                    const p = dados[id];
+                Object.keys(dadosGlobais).forEach(id => {
+                    const p = dadosGlobais[id];
                     const linkPagina = `parceiro.html?id=${id}`;
 
-                    // Dropdown
+                    // Dropdown Header
                     const itemDrop = document.createElement('a');
                     itemDrop.href = linkPagina;
                     itemDrop.className = "flex items-center gap-3 px-4 py-3 hover:bg-emerald-50 transition group";
@@ -117,32 +355,38 @@
                     `;
                     dropdownLista.appendChild(itemDrop);
 
-                    // Cards Destaque
+                    // Cards Destaque Homepage
                     const card = document.createElement('a');
                     card.href = linkPagina;
-                    card.className = "bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-emerald-300 transition flex items-center gap-4 group";
+                    card.className = "bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-emerald-300 transition flex items-center gap-5 group";
                     card.innerHTML = `
-                        <img src="${p.logo_img}" class="w-16 h-16 rounded-xl object-cover border border-slate-100 shadow-sm">
+                        <img src="${p.logo_img}" class="w-20 h-20 rounded-2xl object-cover border border-slate-100 shadow-sm flex-shrink-0">
                         <div class="flex-1 min-w-0">
-                            <span class="inline-block bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-md mb-1">
-                                Verificado ✓
+                            <span class="inline-block bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-md mb-1.5">
+                                Parceiro Verificado ✓
                             </span>
-                            <h3 class="font-bold text-slate-900 text-sm group-hover:text-emerald-600 truncate">${p.nome}</h3>
-                            <p class="text-xs text-slate-500 truncate mt-0.5">${p.subtitulo}</p>
+                            <h3 class="font-bold text-slate-900 text-base group-hover:text-emerald-600 truncate">${p.nome}</h3>
+                            <p class="text-xs text-slate-500 truncate mt-0.5"><i class="fa-solid fa-location-dot text-emerald-500 mr-1"></i> ${p.endereco}</p>
+                            <div class="mt-2 text-xs font-semibold text-emerald-600 flex items-center gap-1">
+                                Ver perfil completo <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </div>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-emerald-500 text-sm mr-2"></i>
                     `;
                     gridDestaque.appendChild(card);
                 });
 
             } catch (erro) {
-                console.error("Erro ao carregar os parceiros:", erro);
+                console.error("Erro ao carregar os dados dos parceiros:", erro);
             }
         }
 
         function toggleModalParceiros() {
             const dropdown = document.getElementById('dropdown-parceiros');
             dropdown.classList.toggle('hidden');
+        }
+
+        function executarBusca() {
+            toggleModalParceiros();
         }
 
         window.addEventListener('click', function(e) {
