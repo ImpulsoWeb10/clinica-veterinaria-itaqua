@@ -116,14 +116,13 @@
 
             <!-- Ações do Header -->
             <div class="flex items-center gap-3">
-                <!-- Botão Destaque do Topo: Com efeito de Brilho e Pulso -->
                 <button onclick="abrirModalCadastroParceiro()" class="btn-shimmer btn-pulse inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 px-4 py-2.5 rounded-xl text-xs font-extrabold transition shadow-md shadow-amber-500/20">
                     <i class="fa-solid fa-store"></i> Cadastrar Minha Clínica
                 </button>
 
-                <!-- Botão Dropdown de Parceiros Verificados -->
+                <!-- Botão Ver Parceiros com Dropdown -->
                 <div class="relative">
-                    <button onclick="toggleModalParceiros()" class="inline-flex items-center gap-2 bg-emerald-800 hover:bg-emerald-700 text-white px-3.5 py-2.5 rounded-xl text-xs font-bold transition shadow-md border border-emerald-700">
+                    <button id="btn-ver-parceiros" onclick="toggleModalParceiros(event)" class="inline-flex items-center gap-2 bg-emerald-800 hover:bg-emerald-700 text-white px-3.5 py-2.5 rounded-xl text-xs font-bold transition shadow-md border border-emerald-700">
                         <i class="fa-solid fa-shield-cat text-emerald-400"></i> Ver Parceiros <i class="fa-solid fa-chevron-down text-[10px] ml-1"></i>
                     </button>
 
@@ -150,9 +149,16 @@
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                <div class="inline-flex items-center gap-2 bg-emerald-800/80 text-emerald-300 px-3.5 py-1.5 rounded-full text-xs font-bold border border-emerald-700/60 shadow-sm">
-                    <i class="fa-solid fa-location-dot text-emerald-400"></i> Itaquaquecetuba – SP e Região
+                
+                <!-- ESPAÇO DA LOGO DO PORTAL (Abaixo de Portal Pet Itaquá e Acima da Região) -->
+                <div class="flex flex-col items-center lg:items-start gap-3">
+                    <img src="logo-portal-pet-itaqua.png" alt="Portal Pet Itaquá Logo" class="h-20 sm:h-24 object-contain max-w-xs drop-shadow-md" onerror="this.style.display='none'">
+                    
+                    <div class="inline-flex items-center gap-2 bg-emerald-800/80 text-emerald-300 px-3.5 py-1.5 rounded-full text-xs font-bold border border-emerald-700/60 shadow-sm">
+                        <i class="fa-solid fa-location-dot text-emerald-400"></i> Itaquaquecetuba – SP e Região
+                    </div>
                 </div>
+
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
                     Encontre clínicas veterinárias em <span class="text-emerald-400">Itaquaquecetuba</span> e região
                 </h1>
@@ -164,7 +170,6 @@
                     <a href="#busca-clinicas" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-emerald-500/20 transition flex items-center gap-2 text-sm">
                         <i class="fa-solid fa-magnifying-glass"></i> Encontrar Clínica
                     </a>
-                    <!-- Botão Hero com efeito de Brilho Reluzente -->
                     <button onclick="abrirModalCadastroParceiro()" class="btn-shimmer bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-6 py-3.5 rounded-xl shadow-lg shadow-amber-500/20 transition flex items-center gap-2 text-sm">
                         <i class="fa-solid fa-plus-circle"></i> Anunciar Meu Estabelecimento
                     </button>
@@ -181,43 +186,64 @@
         </div>
     </section>
 
-    <!-- BARRA DE BUSCA CENTRAL INTELIGENTE -->
+    <!-- BARRA DE BUSCA CENTRAL INTELIGENTE E ELEGANTE -->
     <section id="busca-clinicas" class="max-w-5xl mx-auto px-4 -mt-10 relative z-20">
-        <div class="bg-white rounded-3xl shadow-xl border border-slate-200/80 p-6 sm:p-8 backdrop-blur-xl">
-            <h2 class="text-xl font-extrabold text-slate-900 mb-2 flex items-center gap-2">
-                <i class="fa-solid fa-filter text-emerald-600"></i> Buscador de Clínicas e Serviços
+        <div class="bg-white rounded-3xl shadow-xl border border-slate-200/90 p-6 sm:p-8 backdrop-blur-xl">
+            <h2 class="text-xl font-extrabold text-slate-900 mb-1 flex items-center gap-2">
+                <i class="fa-solid fa-sliders text-emerald-600"></i> Buscador de Clínicas e Serviços
             </h2>
-            <p class="text-xs sm:text-sm text-slate-500 mb-6">Selecione os filtros abaixo para localizar estabelecimentos cadastrados na rede de parceiros.</p>
+            <p class="text-xs sm:text-sm text-slate-500 mb-6">Selecione os filtros abaixo para encontrar o estabelecimento ideal.</p>
             
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
+                <!-- Campo Cidade -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Cidade</label>
-                    <select id="filtro-cidade" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                        <option value="itaquaquecetuba">Itaquaquecetuba - SP</option>
-                        <option value="poa">Poá - SP (Em breve)</option>
-                        <option value="suzano">Suzano - SP (Em breve)</option>
-                    </select>
+                    <label class="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                        <i class="fa-solid fa-city text-emerald-600"></i> Cidade
+                    </label>
+                    <div class="relative">
+                        <select id="filtro-cidade" class="w-full appearance-none bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3.5 pr-10 text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition shadow-sm">
+                            <option value="itaquaquecetuba">Itaquaquecetuba - SP</option>
+                            <option value="poa">Poá - SP (Em breve)</option>
+                            <option value="suzano">Suzano - SP (Em breve)</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+                    </div>
                 </div>
+
+                <!-- Campo Bairro -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Bairro</label>
-                    <select id="filtro-bairro" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                        <option value="todos">Todos os Bairros</option>
-                        <option value="centro">Centro</option>
-                        <option value="estancia-fraternidade">Estância Fraternidade</option>
-                    </select>
+                    <label class="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                        <i class="fa-solid fa-map-pin text-emerald-600"></i> Bairro
+                    </label>
+                    <div class="relative">
+                        <select id="filtro-bairro" class="w-full appearance-none bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3.5 pr-10 text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition shadow-sm">
+                            <option value="todos">Todos os Bairros</option>
+                            <option value="Centro">Centro</option>
+                            <option value="Estância Fraternidade">Estância Fraternidade</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+                    </div>
                 </div>
+
+                <!-- Campo Serviço -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Serviço Desejado</label>
-                    <select id="filtro-servico" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                        <option value="todos">Todos os Serviços</option>
-                        <option value="consultas">Consultas Médicas</option>
-                        <option value="vacinacao">Vacinação</option>
-                        <option value="cirurgia">Cirurgia & Castração</option>
-                    </select>
+                    <label class="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                        <i class="fa-solid fa-stethoscope text-emerald-600"></i> Serviço / Especialidade
+                    </label>
+                    <div class="relative">
+                        <select id="filtro-servico" class="w-full appearance-none bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3.5 pr-10 text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition shadow-sm">
+                            <option value="todos">Todos os Serviços</option>
+                            <option value="Consultas">Consultas Médicas</option>
+                            <option value="Vacinação">Vacinação</option>
+                            <option value="Cirurgia">Cirurgias & Castração</option>
+                            <option value="Exames">Exames & Ultrassom</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+                    </div>
                 </div>
             </div>
             
-            <button onclick="executarBusca()" class="w-full bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-bold py-3.5 rounded-xl transition shadow-md shadow-emerald-600/30 flex items-center justify-center gap-2 text-sm">
+            <button onclick="executarBusca()" class="w-full bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-extrabold py-4 rounded-2xl transition shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 text-sm uppercase tracking-wider">
                 <i class="fa-solid fa-magnifying-glass"></i> Pesquisar Estabelecimentos
             </button>
         </div>
@@ -226,13 +252,13 @@
     <!-- CLÍNICAS PARCEIRAS EM DESTAQUE -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
         
-        <section>
+        <section id="secao-parceiros">
             <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
                 <div>
                     <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest block mb-1">Diretório Verificado</span>
                     <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Clínicas e Estabelecimentos em Destaque</h2>
                 </div>
-                <p class="text-xs text-slate-500 max-w-xs">Dados fornecidos e aprovados diretamente pelos parceiros oficiais do portal.</p>
+                <p id="contador-parceiros" class="text-xs text-slate-500 max-w-xs font-medium">Mostrando estabelecimentos cadastrados e verificados.</p>
             </div>
 
             <div id="grid-parceiros-destaque" class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -251,20 +277,18 @@
                     Cadastre o seu estabelecimento no Portal Pet Itaquá e seja encontrado por centenas de tutores que buscam atendimento diariamente na região.
                 </p>
             </div>
-            <!-- BOTÃO DO MEIO REFORÇADO COM BRILHO RELUZENTE (btn-shimmer) -->
             <button onclick="abrirModalCadastroParceiro()" class="btn-shimmer bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-8 py-4 rounded-2xl shadow-xl transition flex-shrink-0 flex items-center gap-2 text-base transform hover:scale-[1.02] active:scale-[0.98]">
                 <i class="fa-solid fa-store"></i> Cadastrar Gratuitamente
             </button>
         </section>
 
-        <!-- CARROSSEL ELEGANTE DE CUIDADOS COM PETS (10 IMAGENS WEBP + FRASES) -->
+        <!-- CARROSSEL ELEGANTE DE CUIDADOS COM PETS -->
         <section id="galeria-pet" class="bg-slate-900 text-white rounded-3xl p-6 sm:p-10 shadow-2xl border border-slate-800 relative overflow-hidden">
             <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
                 <div>
                     <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest block mb-1">Amor e Bem-Estar</span>
                     <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Dicas & Momentos de Carinho</h2>
                 </div>
-                <!-- Botoes de Navegação do Carrossel -->
                 <div class="flex items-center gap-2">
                     <button onclick="mudarSlidePet(-1)" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-emerald-600 text-white flex items-center justify-center transition border border-slate-700">
                         <i class="fa-solid fa-chevron-left"></i>
@@ -275,11 +299,9 @@
                 </div>
             </div>
 
-            <!-- Container das Imagens e Frases -->
             <div class="relative overflow-hidden rounded-2xl h-80 sm:h-[420px]">
                 <div id="slides-container" class="flex transition-transform duration-500 ease-in-out h-full">
                     
-                    <!-- Slide 1 -->
                     <div class="min-w-full h-full relative flex-shrink-0">
                         <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=1200&fm=webp&q=80" alt="Cão feliz" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-6 sm:p-8">
@@ -287,7 +309,6 @@
                         </div>
                     </div>
 
-                    <!-- Slide 2 -->
                     <div class="min-w-full h-full relative flex-shrink-0">
                         <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=1200&fm=webp&q=80" alt="Gato relaxado" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-6 sm:p-8">
@@ -295,7 +316,6 @@
                         </div>
                     </div>
 
-                    <!-- Slide 3 -->
                     <div class="min-w-full h-full relative flex-shrink-0">
                         <img src="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&w=1200&fm=webp&q=80" alt="Filhote sendo cuidado" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-6 sm:p-8">
@@ -303,7 +323,6 @@
                         </div>
                     </div>
 
-                    <!-- Slide 4 -->
                     <div class="min-w-full h-full relative flex-shrink-0">
                         <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=1200&fm=webp&q=80" alt="Gato fofo" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-6 sm:p-8">
@@ -311,7 +330,6 @@
                         </div>
                     </div>
 
-                    <!-- Slide 5 -->
                     <div class="min-w-full h-full relative flex-shrink-0">
                         <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=1200&fm=webp&q=80" alt="Cão brincalhão" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-6 sm:p-8">
@@ -319,7 +337,6 @@
                         </div>
                     </div>
 
-                    <!-- Slide 6 -->
                     <div class="min-w-full h-full relative flex-shrink-0">
                         <img src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?auto=format&fit=crop&w=1200&fm=webp&q=80" alt="Cão recebendo carinho" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-6 sm:p-8">
@@ -327,7 +344,6 @@
                         </div>
                     </div>
 
-                    <!-- Slide 7 -->
                     <div class="min-w-full h-full relative flex-shrink-0">
                         <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=1200&fm=webp&q=80" alt="Gato curioso" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-6 sm:p-8">
@@ -335,7 +351,6 @@
                         </div>
                     </div>
 
-                    <!-- Slide 8 -->
                     <div class="min-w-full h-full relative flex-shrink-0">
                         <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1200&fm=webp&q=80" alt="Cachorro deitado" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-6 sm:p-8">
@@ -343,7 +358,6 @@
                         </div>
                     </div>
 
-                    <!-- Slide 9 -->
                     <div class="min-w-full h-full relative flex-shrink-0">
                         <img src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?auto=format&fit=crop&w=1200&fm=webp&q=80" alt="Gatinho fofo" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-6 sm:p-8">
@@ -351,7 +365,6 @@
                         </div>
                     </div>
 
-                    <!-- Slide 10 -->
                     <div class="min-w-full h-full relative flex-shrink-0">
                         <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=1200&fm=webp&q=80" alt="Cão e dono felizes" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-6 sm:p-8">
@@ -362,7 +375,6 @@
                 </div>
             </div>
 
-            <!-- Marcadores (Dots) do Carrossel -->
             <div id="dots-container" class="flex items-center justify-center gap-2 mt-4">
                 <!-- Injetados via JS -->
             </div>
@@ -567,7 +579,7 @@
         </div>
     </div>
 
-    <!-- SCRIPT DE CARROSSEL, SINCRONIZAÇÃO E CADASTRO -->
+    <!-- SCRIPT DE CARROSSEL, BUSCA E NAVEGAÇÃO CORRIGIDA -->
     <script>
         let dadosGlobais = {};
         let slideAtual = 0;
@@ -577,58 +589,120 @@
             try {
                 const resposta = await fetch('parceiros.json');
                 dadosGlobais = await resposta.json();
-
-                const dropdownLista = document.getElementById('lista-parceiros-dropdown');
-                const gridDestaque = document.getElementById('grid-parceiros-destaque');
-                
-                dropdownLista.innerHTML = '';
-                gridDestaque.innerHTML = '';
-
-                Object.keys(dadosGlobais).forEach(id => {
-                    const p = dadosGlobais[id];
-                    const linkPagina = `parceiro.html?id=${id}`;
-
-                    // Dropdown Header
-                    const itemDrop = document.createElement('a');
-                    itemDrop.href = linkPagina;
-                    itemDrop.className = "flex items-center gap-3 px-4 py-3 hover:bg-emerald-50 transition group";
-                    itemDrop.innerHTML = `
-                        <img src="${p.logo_img}" class="w-9 h-9 rounded-xl object-cover border border-slate-200 bg-white">
-                        <div class="overflow-hidden">
-                            <div class="font-bold text-xs text-slate-800 group-hover:text-emerald-700 truncate">${p.nome}</div>
-                            <div class="text-[10px] text-slate-400 truncate"><i class="fa-solid fa-location-dot text-emerald-500"></i> ${p.bairro}</div>
-                        </div>
-                    `;
-                    dropdownLista.appendChild(itemDrop);
-
-                    // Cards Destaque Homepage
-                    const card = document.createElement('a');
-                    card.href = linkPagina;
-                    card.className = "bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-emerald-300 transition flex items-center gap-5 group";
-                    card.innerHTML = `
-                        <img src="${p.logo_img}" class="w-20 h-20 rounded-2xl object-cover border border-slate-100 shadow-sm flex-shrink-0">
-                        <div class="flex-1 min-w-0">
-                            <span class="inline-block bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-md mb-1.5">
-                                Parceiro Verificado ✓
-                            </span>
-                            <h3 class="font-bold text-slate-900 text-base group-hover:text-emerald-600 truncate">${p.nome}</h3>
-                            <p class="text-xs text-slate-500 truncate mt-0.5"><i class="fa-solid fa-location-dot text-emerald-500 mr-1"></i> ${p.endereco}</p>
-                            <div class="mt-2 text-xs font-semibold text-emerald-600 flex items-center gap-1">
-                                Ver perfil completo <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                            </div>
-                        </div>
-                    `;
-                    gridDestaque.appendChild(card);
-                });
-
+                renderizarParceiros(dadosGlobais);
                 inicializarDotsCarrossel();
-
             } catch (erro) {
                 console.error("Erro ao carregar os dados dos parceiros:", erro);
             }
         }
 
-        // Lógica do Carrossel Pet
+        function renderizarParceiros(lista) {
+            const dropdownLista = document.getElementById('lista-parceiros-dropdown');
+            const gridDestaque = document.getElementById('grid-parceiros-destaque');
+            const contador = document.getElementById('contador-parceiros');
+            
+            dropdownLista.innerHTML = '';
+            gridDestaque.innerHTML = '';
+
+            const chaves = Object.keys(lista);
+            
+            if (chaves.length === 0) {
+                gridDestaque.innerHTML = `
+                    <div class="col-span-1 md:col-span-2 bg-amber-50 rounded-2xl p-8 border border-amber-200 text-center space-y-3">
+                        <i class="fa-solid fa-circle-exclamation text-amber-500 text-3xl"></i>
+                        <h4 class="font-bold text-amber-900 text-base">Nenhum parceiro encontrado com esses filtros</h4>
+                        <p class="text-xs text-amber-700">Tente selecionar "Todos os Bairros" ou "Todos os Serviços" para ver mais estabelecimentos.</p>
+                        <button onclick="limparFiltros()" class="bg-amber-600 text-white text-xs font-bold px-4 py-2 rounded-xl">Ver Todos os Parceiros</button>
+                    </div>
+                `;
+                contador.textContent = "Nenhum resultado para os filtros selecionados.";
+                return;
+            }
+
+            contador.textContent = `Exibindo ${chaves.length} estabelecimento(s) parceiro(s).`;
+
+            chaves.forEach(id => {
+                const p = lista[id];
+                const linkPagina = `parceiro.html?id=${id}`;
+
+                // Dropdown Header
+                const itemDrop = document.createElement('a');
+                itemDrop.href = linkPagina;
+                itemDrop.className = "flex items-center gap-3 px-4 py-3 hover:bg-emerald-50 transition group";
+                itemDrop.innerHTML = `
+                    <img src="${p.logo_img}" class="w-9 h-9 rounded-xl object-cover border border-slate-200 bg-white">
+                    <div class="overflow-hidden">
+                        <div class="font-bold text-xs text-slate-800 group-hover:text-emerald-700 truncate">${p.nome}</div>
+                        <div class="text-[10px] text-slate-400 truncate"><i class="fa-solid fa-location-dot text-emerald-500"></i> ${p.bairro}</div>
+                    </div>
+                `;
+                dropdownLista.appendChild(itemDrop);
+
+                // Cards Destaque Homepage
+                const card = document.createElement('a');
+                card.href = linkPagina;
+                card.className = "bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-emerald-300 transition flex items-center gap-5 group";
+                card.innerHTML = `
+                    <img src="${p.logo_img}" class="w-20 h-20 rounded-2xl object-cover border border-slate-100 shadow-sm flex-shrink-0">
+                    <div class="flex-1 min-w-0">
+                        <span class="inline-block bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-md mb-1.5">
+                            Parceiro Verificado ✓
+                        </span>
+                        <h3 class="font-bold text-slate-900 text-base group-hover:text-emerald-600 truncate">${p.nome}</h3>
+                        <p class="text-xs text-slate-500 truncate mt-0.5"><i class="fa-solid fa-location-dot text-emerald-500 mr-1"></i> ${p.endereco}</p>
+                        <div class="mt-2 text-xs font-semibold text-emerald-600 flex items-center gap-1">
+                            Ver perfil completo <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </div>
+                    </div>
+                `;
+                gridDestaque.appendChild(card);
+            });
+        }
+
+        // Executar Busca Inteligente com Filtros Reais
+        function executarBusca() {
+            const bairro = document.getElementById('filtro-bairro').value;
+            const servico = document.getElementById('filtro-servico').value;
+
+            let resultados = {};
+
+            Object.keys(dadosGlobais).forEach(id => {
+                const p = dadosGlobais[id];
+                let combinaBairro = (bairro === 'todos') || (p.bairro.toLowerCase().includes(bairro.toLowerCase()));
+                
+                let combinaServico = (servico === 'todos');
+                if (!combinaServico && p.servicos) {
+                    combinaServico = p.servicos.some(s => 
+                        s.titulo.toLowerCase().includes(servico.toLowerCase()) || 
+                        s.desc.toLowerCase().includes(servico.toLowerCase())
+                    );
+                }
+
+                if (combinaBairro && combinaServico) {
+                    resultados[id] = p;
+                }
+            });
+
+            renderizarParceiros(resultados);
+
+            // Rola suavemente até a seção de parceiros
+            document.getElementById('secao-parceiros').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function limparFiltros() {
+            document.getElementById('filtro-bairro').value = 'todos';
+            document.getElementById('filtro-servico').value = 'todos';
+            renderizarParceiros(dadosGlobais);
+        }
+
+        // Lógica do Dropdown "Ver Parceiros"
+        function toggleModalParceiros(e) {
+            if (e) e.stopPropagation();
+            const dropdown = document.getElementById('dropdown-parceiros');
+            dropdown.classList.toggle('hidden');
+        }
+
+        // Carrossel de Imagens
         function mudarSlidePet(direcao) {
             slideAtual += direcao;
             if (slideAtual >= totalSlides) slideAtual = 0;
@@ -668,15 +742,9 @@
             }
         }
 
-        // Transição Automática do Carrossel a cada 5 segundos
         setInterval(() => {
             mudarSlidePet(1);
         }, 5000);
-
-        function toggleModalParceiros() {
-            const dropdown = document.getElementById('dropdown-parceiros');
-            dropdown.classList.toggle('hidden');
-        }
 
         function abrirModalCadastroParceiro() {
             document.getElementById('modal-cadastro-parceiro').classList.remove('hidden');
@@ -706,16 +774,14 @@
             window.open(urlWhats, '_blank');
         }
 
-        function executarBusca() {
-            toggleModalParceiros();
-        }
-
+        // Fecha o dropdown se clicar fora
         window.addEventListener('click', function(e) {
             const dropdown = document.getElementById('dropdown-parceiros');
-            const btn = e.target.closest('button');
-            if (btn && btn.onclick === toggleModalParceiros) return;
-            if (dropdown && !dropdown.contains(e.target)) {
-                dropdown.classList.add('hidden');
+            const btn = document.getElementById('btn-ver-parceiros');
+            if (dropdown && !dropdown.classList.contains('hidden')) {
+                if (!dropdown.contains(e.target) && !btn.contains(e.target)) {
+                    dropdown.classList.add('hidden');
+                }
             }
         });
 
