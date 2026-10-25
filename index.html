@@ -23,6 +23,45 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        /* Animação de Brilho Reluzente (Shimmer / Light Sweep) */
+        @keyframes sweep {
+            0% { transform: translateX(-150%) skewX(-20deg); }
+            50%, 100% { transform: translateX(250%) skewX(-20deg); }
+        }
+
+        .btn-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-shimmer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.6) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: translateX(-150%) skewX(-20deg);
+            animation: sweep 4s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        /* Efeito Pulsante Suave */
+        @keyframes pulse-subtle {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.5); }
+            50% { transform: scale(1.03); box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+        }
+
+        .btn-pulse {
+            animation: pulse-subtle 2.5s infinite ease-in-out;
+        }
     </style>
 
     <!-- DADOS ESTRUTURADOS (SCHEMA.ORG / JSON-LD) -->
@@ -68,6 +107,7 @@
                 <a href="#inicio" class="hover:text-emerald-400 transition">Início</a>
                 <a href="#busca-clinicas" class="hover:text-emerald-400 transition">Encontrar Clínicas</a>
                 <a href="#servicos" class="hover:text-emerald-400 transition">Serviços</a>
+                <a href="#galeria-pet" class="hover:text-emerald-400 transition">Cuidados Pet</a>
                 <a href="#saude-animal" class="hover:text-emerald-400 transition">Saúde Animal</a>
                 <a href="#emergencia" class="text-amber-400 hover:text-amber-300 font-semibold flex items-center gap-1.5">
                     <i class="fa-solid fa-triangle-exclamation"></i> Emergência
@@ -76,8 +116,8 @@
 
             <!-- Ações do Header -->
             <div class="flex items-center gap-3">
-                <!-- Botão Destaque: Seja um Parceiro -->
-                <button onclick="abrirModalCadastroParceiro()" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 px-4 py-2.5 rounded-xl text-xs font-extrabold transition shadow-md shadow-amber-500/20 transform hover:-translate-y-0.5">
+                <!-- Botão Destaque do Topo: Com efeito de Brilho e Pulso -->
+                <button onclick="abrirModalCadastroParceiro()" class="btn-shimmer btn-pulse inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 px-4 py-2.5 rounded-xl text-xs font-extrabold transition shadow-md shadow-amber-500/20">
                     <i class="fa-solid fa-store"></i> Cadastrar Minha Clínica
                 </button>
 
@@ -124,7 +164,8 @@
                     <a href="#busca-clinicas" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-emerald-500/20 transition flex items-center gap-2 text-sm">
                         <i class="fa-solid fa-magnifying-glass"></i> Encontrar Clínica
                     </a>
-                    <button onclick="abrirModalCadastroParceiro()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-6 py-3.5 rounded-xl shadow-lg shadow-amber-500/20 transition flex items-center gap-2 text-sm">
+                    <!-- Botão Hero com efeito de Brilho Reluzente -->
+                    <button onclick="abrirModalCadastroParceiro()" class="btn-shimmer bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-6 py-3.5 rounded-xl shadow-lg shadow-amber-500/20 transition flex items-center gap-2 text-sm">
                         <i class="fa-solid fa-plus-circle"></i> Anunciar Meu Estabelecimento
                     </button>
                 </div>
@@ -199,7 +240,7 @@
             </div>
         </section>
 
-        <!-- BANNER DE CADASTRO PARA CLÍNICAS -->
+        <!-- BANNER DO MEIO: BOTÃO COM BRILHO PASSANDO NO MEIO -->
         <section class="bg-gradient-to-r from-emerald-900 to-teal-900 rounded-3xl p-8 sm:p-10 text-white shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 border border-emerald-800">
             <div class="space-y-2 text-center md:text-left">
                 <span class="bg-amber-500/20 text-amber-300 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-block">
@@ -210,9 +251,121 @@
                     Cadastre o seu estabelecimento no Portal Pet Itaquá e seja encontrado por centenas de tutores que buscam atendimento diariamente na região.
                 </p>
             </div>
-            <button onclick="abrirModalCadastroParceiro()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-8 py-4 rounded-2xl shadow-lg transition flex-shrink-0 flex items-center gap-2 text-base">
+            <!-- BOTÃO DO MEIO REFORÇADO COM BRILHO RELUZENTE (btn-shimmer) -->
+            <button onclick="abrirModalCadastroParceiro()" class="btn-shimmer bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-8 py-4 rounded-2xl shadow-xl transition flex-shrink-0 flex items-center gap-2 text-base transform hover:scale-[1.02] active:scale-[0.98]">
                 <i class="fa-solid fa-store"></i> Cadastrar Gratuitamente
             </button>
+        </section>
+
+        <!-- CARROSSEL ELEGANTE DE CUIDADOS COM PETS (10 IMAGENS WEBP + FRASES) -->
+        <section id="galeria-pet" class="bg-slate-900 text-white rounded-3xl p-6 sm:p-10 shadow-2xl border border-slate-800 relative overflow-hidden">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+                <div>
+                    <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest block mb-1">Amor e Bem-Estar</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Dicas & Momentos de Carinho</h2>
+                </div>
+                <!-- Botoes de Navegação do Carrossel -->
+                <div class="flex items-center gap-2">
+                    <button onclick="mudarSlidePet(-1)" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-emerald-600 text-white flex items-center justify-center transition border border-slate-700">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button onclick="mudarSlidePet(1)" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-emerald-600 text-white flex items-center justify-center transition border border-slate-700">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Container das Imagens e Frases -->
+            <div class="relative overflow-hidden rounded-2xl h-80 sm:h-[420px]">
+                <div id="slides-container" class="flex transition-transform duration-500 ease-in-out h-full">
+                    
+                    <!-- Slide 1 -->
+                    <div class="min-w-full h-full relative flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=1200&fm=webp&q=80" alt="Cão feliz" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-6 sm:p-8">
+                            <p class="text-base sm:text-xl font-bold text-white max-w-xl"><i class="fa-solid fa-quote-left text-emerald-400 mr-2"></i>"A saúde do seu cão começa com consultas de rotina e carinho diário."</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="min-w-full h-full relative flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=1200&fm=webp&q=80" alt="Gato relaxado" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-6 sm:p-8">
+                            <p class="text-base sm:text-xl font-bold text-white max-w-xl"><i class="fa-solid fa-quote-left text-emerald-400 mr-2"></i>"Gatos precisam de ambientes seguros e calmos para viverem sem estresse."</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="min-w-full h-full relative flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&w=1200&fm=webp&q=80" alt="Filhote sendo cuidado" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-6 sm:p-8">
+                            <p class="text-base sm:text-xl font-bold text-white max-w-xl"><i class="fa-solid fa-quote-left text-emerald-400 mr-2"></i>"Filhotes exigem vacinação em dia antes de passearem na rua."</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="min-w-full h-full relative flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=1200&fm=webp&q=80" alt="Gato fofo" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-6 sm:p-8">
+                            <p class="text-base sm:text-xl font-bold text-white max-w-xl"><i class="fa-solid fa-quote-left text-emerald-400 mr-2"></i>"A hidratação constante previne problemas renais sérios em felinos."</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5 -->
+                    <div class="min-w-full h-full relative flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=1200&fm=webp&q=80" alt="Cão brincalhão" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-6 sm:p-8">
+                            <p class="text-base sm:text-xl font-bold text-white max-w-xl"><i class="fa-solid fa-quote-left text-emerald-400 mr-2"></i>"Exercícios diários mantêm as articulações dos cães saudáveis."</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 6 -->
+                    <div class="min-w-full h-full relative flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?auto=format&fit=crop&w=1200&fm=webp&q=80" alt="Cão recebendo carinho" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-6 sm:p-8">
+                            <p class="text-base sm:text-xl font-bold text-white max-w-xl"><i class="fa-solid fa-quote-left text-emerald-400 mr-2"></i>"A escovação regular dos pelos fortalece o vínculo e evita nós."</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 7 -->
+                    <div class="min-w-full h-full relative flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=1200&fm=webp&q=80" alt="Gato curioso" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-6 sm:p-8">
+                            <p class="text-base sm:text-xl font-bold text-white max-w-xl"><i class="fa-solid fa-quote-left text-emerald-400 mr-2"></i>"Telas de proteção nas janelas salvam vidas de felinos curiosos."</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 8 -->
+                    <div class="min-w-full h-full relative flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1200&fm=webp&q=80" alt="Cachorro deitado" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-6 sm:p-8">
+                            <p class="text-base sm:text-xl font-bold text-white max-w-xl"><i class="fa-solid fa-quote-left text-emerald-400 mr-2"></i>"Check-ups anuais previnem doenças graves antes dos sintomas aparecerem."</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 9 -->
+                    <div class="min-w-full h-full relative flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?auto=format&fit=crop&w=1200&fm=webp&q=80" alt="Gatinho fofo" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-6 sm:p-8">
+                            <p class="text-base sm:text-xl font-bold text-white max-w-xl"><i class="fa-solid fa-quote-left text-emerald-400 mr-2"></i>"A castração precoce é um ato de amor e previne tumores."</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 10 -->
+                    <div class="min-w-full h-full relative flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=1200&fm=webp&q=80" alt="Cão e dono felizes" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-6 sm:p-8">
+                            <p class="text-base sm:text-xl font-bold text-white max-w-xl"><i class="fa-solid fa-quote-left text-emerald-400 mr-2"></i>"Alimentação equilibrada garante uma vida longa e cheia de energia."</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Marcadores (Dots) do Carrossel -->
+            <div id="dots-container" class="flex items-center justify-center gap-2 mt-4">
+                <!-- Injetados via JS -->
+            </div>
         </section>
 
         <!-- SEÇÃO VISUAL: SERVIÇOS -->
@@ -325,6 +478,7 @@
                     <li><a href="#inicio" class="hover:text-white transition">Início</a></li>
                     <li><a href="#busca-clinicas" class="hover:text-white transition">Pesquisar Clínicas</a></li>
                     <li><a href="#servicos" class="hover:text-white transition">Serviços Veterinários</a></li>
+                    <li><a href="#galeria-pet" class="hover:text-white transition">Cuidados Pet</a></li>
                     <li><a href="#saude-animal" class="hover:text-white transition">Guia de Saúde Animal</a></li>
                 </ul>
             </div>
@@ -358,12 +512,10 @@
     <!-- MODAL ELEGANTE: SEJA UM PARCEIRO -->
     <div id="modal-cadastro-parceiro" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-3xl shadow-2xl border border-slate-100 max-w-xl w-full p-6 sm:p-8 relative my-8 overflow-hidden">
-            <!-- Botão Fechar -->
             <button onclick="fecharModalCadastroParceiro()" class="absolute top-5 right-5 w-9 h-9 bg-slate-100 hover:bg-slate-200 text-slate-500 rounded-full flex items-center justify-center transition">
                 <i class="fa-solid fa-xmark text-base"></i>
             </button>
 
-            <!-- Cabeçalho do Modal -->
             <div class="mb-6 space-y-1">
                 <span class="inline-flex items-center gap-1.5 bg-amber-100 text-amber-800 text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
                     <i class="fa-solid fa-paw text-amber-600"></i> Seja um Parceiro Oficial
@@ -372,9 +524,7 @@
                 <p class="text-xs text-slate-500">Preencha os dados abaixo. Você será redirecionado para o nosso WhatsApp e os dados serão enviados ao nosso setor de cadastros.</p>
             </div>
 
-            <!-- Formulário de Cadastro integrando Formspree (E-mail) + WhatsApp -->
             <form id="form-seja-parceiro" action="https://formspree.io/f/xknkyyyy" method="POST" onsubmit="enviarCadastroParceiro(event)" class="space-y-4 text-left">
-                <!-- E-mail Oculto do Destinatário -->
                 <input type="hidden" name="_to" value="impulsoweb10@gmail.com">
                 <input type="hidden" name="_subject" value="NOVO PARCEIRO PET ITAQUÁ">
 
@@ -417,9 +567,11 @@
         </div>
     </div>
 
-    <!-- SCRIPT DE SINCRONIZAÇÃO E CADASTRO -->
+    <!-- SCRIPT DE CARROSSEL, SINCRONIZAÇÃO E CADASTRO -->
     <script>
         let dadosGlobais = {};
+        let slideAtual = 0;
+        const totalSlides = 10;
 
         async function carregarPortal() {
             try {
@@ -469,10 +621,57 @@
                     gridDestaque.appendChild(card);
                 });
 
+                inicializarDotsCarrossel();
+
             } catch (erro) {
                 console.error("Erro ao carregar os dados dos parceiros:", erro);
             }
         }
+
+        // Lógica do Carrossel Pet
+        function mudarSlidePet(direcao) {
+            slideAtual += direcao;
+            if (slideAtual >= totalSlides) slideAtual = 0;
+            if (slideAtual < 0) slideAtual = totalSlides - 1;
+            
+            const container = document.getElementById('slides-container');
+            container.style.transform = `translateX(-${slideAtual * 100}%)`;
+            atualizarDots();
+        }
+
+        function irParaSlidePet(index) {
+            slideAtual = index;
+            const container = document.getElementById('slides-container');
+            container.style.transform = `translateX(-${slideAtual * 100}%)`;
+            atualizarDots();
+        }
+
+        function inicializarDotsCarrossel() {
+            const dotsContainer = document.getElementById('dots-container');
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('button');
+                dot.className = `w-2.5 h-2.5 rounded-full transition-all ${i === 0 ? 'bg-emerald-400 w-6' : 'bg-slate-700 hover:bg-slate-500'}`;
+                dot.onclick = () => irParaSlidePet(i);
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function atualizarDots() {
+            const dots = document.getElementById('dots-container').children;
+            for (let i = 0; i < dots.length; i++) {
+                if (i === slideAtual) {
+                    dots[i].className = 'w-6 h-2.5 rounded-full bg-emerald-400 transition-all';
+                } else {
+                    dots[i].className = 'w-2.5 h-2.5 rounded-full bg-slate-700 hover:bg-slate-500 transition-all';
+                }
+            }
+        }
+
+        // Transição Automática do Carrossel a cada 5 segundos
+        setInterval(() => {
+            mudarSlidePet(1);
+        }, 5000);
 
         function toggleModalParceiros() {
             const dropdown = document.getElementById('dropdown-parceiros');
@@ -487,7 +686,6 @@
             document.getElementById('modal-cadastro-parceiro').classList.add('hidden');
         }
 
-        // Envio do formulário de Parceiro (WhatsApp + E-mail)
         function enviarCadastroParceiro(event) {
             const nomeEstab = document.getElementById('parceiro-nome-estab').value;
             const nomeResp = document.getElementById('parceiro-nome-resp').value;
@@ -496,7 +694,6 @@
             const email = document.getElementById('parceiro-email-estab').value;
             const servicos = document.getElementById('parceiro-servicos-estab').value;
 
-            // Formatação do texto do WhatsApp para o seu celular 11 95495-0044
             const mensagemWhats = `*NOVO PARCEIRO PET ITAQUÁ*\n\n` +
                                   `*Estabelecimento:* ${nomeEstab}\n` +
                                   `*Responsável:* ${nomeResp}\n` +
@@ -506,8 +703,6 @@
                                   `*Serviços:* ${servicos}`;
 
             const urlWhats = `https://wa.me/5511954950044?text=${encodeURIComponent(mensagemWhats)}`;
-
-            // Dispara para o WhatsApp numa nova aba
             window.open(urlWhats, '_blank');
         }
 
