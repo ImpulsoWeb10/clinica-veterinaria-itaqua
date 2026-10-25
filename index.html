@@ -74,20 +74,28 @@
                 </a>
             </nav>
 
-            <!-- Botão com Menu Dropdown de Parceiros -->
-            <div class="relative">
-                <button onclick="toggleModalParceiros()" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-md shadow-emerald-900/30">
-                    <i class="fa-solid fa-shield-cat"></i> Clínicas Parceiras <i class="fa-solid fa-chevron-down text-[10px] ml-1"></i>
+            <!-- Ações do Header -->
+            <div class="flex items-center gap-3">
+                <!-- Botão Destaque: Seja um Parceiro -->
+                <button onclick="abrirModalCadastroParceiro()" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 px-4 py-2.5 rounded-xl text-xs font-extrabold transition shadow-md shadow-amber-500/20 transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-store"></i> Cadastrar Minha Clínica
                 </button>
 
-                <!-- Dropdown de Parceiros -->
-                <div id="dropdown-parceiros" class="hidden absolute right-0 mt-3 w-80 bg-white rounded-2xl shadow-2xl border border-slate-100 py-3 z-50 text-slate-800">
-                    <div class="px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 flex items-center justify-between">
-                        <span>Estabelecimentos Aprovados</span>
-                        <i class="fa-solid fa-paw text-emerald-600"></i>
-                    </div>
-                    <div id="lista-parceiros-dropdown" class="max-h-72 overflow-y-auto divide-y divide-slate-50">
-                        <!-- Preenchido dinamicamente via JS -->
+                <!-- Botão Dropdown de Parceiros Verificados -->
+                <div class="relative">
+                    <button onclick="toggleModalParceiros()" class="inline-flex items-center gap-2 bg-emerald-800 hover:bg-emerald-700 text-white px-3.5 py-2.5 rounded-xl text-xs font-bold transition shadow-md border border-emerald-700">
+                        <i class="fa-solid fa-shield-cat text-emerald-400"></i> Ver Parceiros <i class="fa-solid fa-chevron-down text-[10px] ml-1"></i>
+                    </button>
+
+                    <!-- Dropdown de Parceiros -->
+                    <div id="dropdown-parceiros" class="hidden absolute right-0 mt-3 w-80 bg-white rounded-2xl shadow-2xl border border-slate-100 py-3 z-50 text-slate-800">
+                        <div class="px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 flex items-center justify-between">
+                            <span>Parceiros Verificados</span>
+                            <i class="fa-solid fa-paw text-emerald-600"></i>
+                        </div>
+                        <div id="lista-parceiros-dropdown" class="max-h-72 overflow-y-auto divide-y divide-slate-50">
+                            <!-- Preenchido dinamicamente via JS -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -116,9 +124,9 @@
                     <a href="#busca-clinicas" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-emerald-500/20 transition flex items-center gap-2 text-sm">
                         <i class="fa-solid fa-magnifying-glass"></i> Encontrar Clínica
                     </a>
-                    <a href="#servicos" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3.5 rounded-xl border border-white/20 transition flex items-center gap-2 text-sm backdrop-blur-sm">
-                        <i class="fa-solid fa-stethoscope"></i> Explorar Serviços
-                    </a>
+                    <button onclick="abrirModalCadastroParceiro()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-6 py-3.5 rounded-xl shadow-lg shadow-amber-500/20 transition flex items-center gap-2 text-sm">
+                        <i class="fa-solid fa-plus-circle"></i> Anunciar Meu Estabelecimento
+                    </button>
                 </div>
             </div>
 
@@ -189,6 +197,22 @@
             <div id="grid-parceiros-destaque" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Injetado dinamicamente via JS -->
             </div>
+        </section>
+
+        <!-- BANNER DE CADASTRO PARA CLÍNICAS -->
+        <section class="bg-gradient-to-r from-emerald-900 to-teal-900 rounded-3xl p-8 sm:p-10 text-white shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 border border-emerald-800">
+            <div class="space-y-2 text-center md:text-left">
+                <span class="bg-amber-500/20 text-amber-300 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-block">
+                    Espaço do Profissional
+                </span>
+                <h3 class="text-2xl sm:text-3xl font-extrabold">Possui uma Clínica ou Pet Shop em Itaquá?</h3>
+                <p class="text-emerald-100 text-sm max-w-xl">
+                    Cadastre o seu estabelecimento no Portal Pet Itaquá e seja encontrado por centenas de tutores que buscam atendimento diariamente na região.
+                </p>
+            </div>
+            <button onclick="abrirModalCadastroParceiro()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-8 py-4 rounded-2xl shadow-lg transition flex-shrink-0 flex items-center gap-2 text-base">
+                <i class="fa-solid fa-store"></i> Cadastrar Gratuitamente
+            </button>
         </section>
 
         <!-- SEÇÃO VISUAL: SERVIÇOS -->
@@ -305,12 +329,10 @@
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-bold mb-3 uppercase tracking-wider text-[11px]">Região Atendida</h4>
+                <h4 class="text-white font-bold mb-3 uppercase tracking-wider text-[11px]">Para Profissionais</h4>
                 <ul class="space-y-2">
-                    <li><span class="text-slate-200 font-medium">Itaquaquecetuba – SP</span> (Principal)</li>
-                    <li>Poá – SP (Em expansão)</li>
-                    <li>Suzano – SP (Em expansão)</li>
-                    <li>Mogi das Cruzes – SP (Em expansão)</li>
+                    <li><button onclick="abrirModalCadastroParceiro()" class="text-amber-400 hover:text-amber-300 font-bold">Cadastrar Clínica / Pet Shop</button></li>
+                    <li><a href="#busca-clinicas" class="hover:text-white transition">Região de Itaquaquecetuba</a></li>
                 </ul>
             </div>
             <div>
@@ -318,12 +340,84 @@
                 <p class="leading-relaxed text-[11px]">Este portal é um diretório informativo independente. Não realizamos consultas médicas, diagnósticos nem prestamos serviços veterinários diretos.</p>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 border-t border-slate-800 text-center text-[11px]">
+        
+        <!-- ASSINATURA IMPULSOWEB10 -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px]">
             <p>© 2026 clinicaveterinariaitaqua.com.br • Todos os direitos reservados.</p>
+            <p class="flex items-center gap-1.5 font-medium">
+                Desenvolvimento e SEO por 
+                <a href="https://wa.me/5511954950044?text=Ol%C3%A1!%20Vim%20pelo%20site%20Portal%20Pet%20Itaqu%C3%A1%20e%20gostaria%20de%20saber%20mais%20sobre%20desenvolvimento%20web." 
+                   target="_blank" 
+                   class="bg-emerald-950 text-emerald-400 hover:text-emerald-300 font-extrabold px-2.5 py-1 rounded-md border border-emerald-800 transition inline-flex items-center gap-1">
+                    <i class="fa-solid fa-code text-[10px]"></i> ImpulsoWeb10
+                </a>
+            </p>
         </div>
     </footer>
 
-    <!-- SCRIPT DE SINCRONIZAÇÃO E BUSCA -->
+    <!-- MODAL ELEGANTE: SEJA UM PARCEIRO -->
+    <div id="modal-cadastro-parceiro" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl shadow-2xl border border-slate-100 max-w-xl w-full p-6 sm:p-8 relative my-8 overflow-hidden">
+            <!-- Botão Fechar -->
+            <button onclick="fecharModalCadastroParceiro()" class="absolute top-5 right-5 w-9 h-9 bg-slate-100 hover:bg-slate-200 text-slate-500 rounded-full flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark text-base"></i>
+            </button>
+
+            <!-- Cabeçalho do Modal -->
+            <div class="mb-6 space-y-1">
+                <span class="inline-flex items-center gap-1.5 bg-amber-100 text-amber-800 text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                    <i class="fa-solid fa-paw text-amber-600"></i> Seja um Parceiro Oficial
+                </span>
+                <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight">Cadastrar Estabelecimento</h3>
+                <p class="text-xs text-slate-500">Preencha os dados abaixo. Você será redirecionado para o nosso WhatsApp e os dados serão enviados ao nosso setor de cadastros.</p>
+            </div>
+
+            <!-- Formulário de Cadastro integrando Formspree (E-mail) + WhatsApp -->
+            <form id="form-seja-parceiro" action="https://formspree.io/f/xknkyyyy" method="POST" onsubmit="enviarCadastroParceiro(event)" class="space-y-4 text-left">
+                <!-- E-mail Oculto do Destinatário -->
+                <input type="hidden" name="_to" value="impulsoweb10@gmail.com">
+                <input type="hidden" name="_subject" value="NOVO PARCEIRO PET ITAQUÁ">
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Nome da Clínica / Pet Shop *</label>
+                        <input type="text" id="parceiro-nome-estab" name="Nome_Estabelecimento" required placeholder="Ex: Vet São Lucas" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Nome do Responsável *</label>
+                        <input type="text" id="parceiro-nome-resp" name="Nome_Responsavel" required placeholder="Ex: Dr. Roberto" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Bairro *</label>
+                        <input type="text" id="parceiro-bairro-estab" name="Bairro" required placeholder="Ex: Centro - Itaquá" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">WhatsApp de Contato *</label>
+                        <input type="tel" id="parceiro-whats-estab" name="WhatsApp" required placeholder="(11) 99999-9999" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">E-mail Profissional</label>
+                    <input type="email" id="parceiro-email-estab" name="Email" placeholder="contato@suaclinica.com.br" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Serviços Oferecidos *</label>
+                    <textarea id="parceiro-servicos-estab" name="Servicos" required rows="2" placeholder="Ex: Consultas, vacinação, cirurgias, banho e tosa..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-extrabold py-3.5 rounded-xl shadow-lg shadow-emerald-600/30 transition text-sm flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Enviar Solicitação de Cadastro
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE SINCRONIZAÇÃO E CADASTRO -->
     <script>
         let dadosGlobais = {};
 
@@ -385,6 +479,38 @@
             dropdown.classList.toggle('hidden');
         }
 
+        function abrirModalCadastroParceiro() {
+            document.getElementById('modal-cadastro-parceiro').classList.remove('hidden');
+        }
+
+        function fecharModalCadastroParceiro() {
+            document.getElementById('modal-cadastro-parceiro').classList.add('hidden');
+        }
+
+        // Envio do formulário de Parceiro (WhatsApp + E-mail)
+        function enviarCadastroParceiro(event) {
+            const nomeEstab = document.getElementById('parceiro-nome-estab').value;
+            const nomeResp = document.getElementById('parceiro-nome-resp').value;
+            const bairro = document.getElementById('parceiro-bairro-estab').value;
+            const whats = document.getElementById('parceiro-whats-estab').value;
+            const email = document.getElementById('parceiro-email-estab').value;
+            const servicos = document.getElementById('parceiro-servicos-estab').value;
+
+            // Formatação do texto do WhatsApp para o seu celular 11 95495-0044
+            const mensagemWhats = `*NOVO PARCEIRO PET ITAQUÁ*\n\n` +
+                                  `*Estabelecimento:* ${nomeEstab}\n` +
+                                  `*Responsável:* ${nomeResp}\n` +
+                                  `*Bairro:* ${bairro}\n` +
+                                  `*WhatsApp:* ${whats}\n` +
+                                  `*E-mail:* ${email || 'Não informado'}\n` +
+                                  `*Serviços:* ${servicos}`;
+
+            const urlWhats = `https://wa.me/5511954950044?text=${encodeURIComponent(mensagemWhats)}`;
+
+            // Dispara para o WhatsApp numa nova aba
+            window.open(urlWhats, '_blank');
+        }
+
         function executarBusca() {
             toggleModalParceiros();
         }
@@ -392,7 +518,8 @@
         window.addEventListener('click', function(e) {
             const dropdown = document.getElementById('dropdown-parceiros');
             const btn = e.target.closest('button');
-            if (!btn && !dropdown.contains(e.target)) {
+            if (btn && btn.onclick === toggleModalParceiros) return;
+            if (dropdown && !dropdown.contains(e.target)) {
                 dropdown.classList.add('hidden');
             }
         });
