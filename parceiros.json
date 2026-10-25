@@ -1,28 +1,28 @@
 {
-  "clinica-sao-francisco": {
+"clinica-veterinaria-sao-francisco": {
     "nome": "Clínica Veterinária São Francisco",
-    "subtitulo": "Atendimento veterinário humanizado, exames laboratoriais, cirurgias e plantão de urgências em Itaquaquecetuba.",
-    "bairro": "Centro",
-    "crmv": "CRMV-SP 12.345",
+    "subtitulo": "Atendimento veterinário humanizado, infraestrutura completa, exames e cuidados especializados para o seu pet.",
+    "bairro": "São Francisco",
+    "crmv": "CRMV-SP Verificado",
     "whatsapp": "5511999999999",
-    "whatsapp_msg": "Olá! Vi o perfil da Clínica São Francisco no portal clinicaveterinariaitaqua.com.br e gostaria de agendar uma consulta.",
-    "endereco": "Rua Capitão José Leite, 150 - Centro, Itaquaquecetuba - SP, 08570-020",
-    "maps_link": "https://maps.google.com",
+    "whatsapp_msg": "Olá! Vi o perfil da Clínica Veterinária São Francisco no portal clinicaveterinariaitaqua.com.br e gostaria de obter informações.",
+    "endereco": "Região de Atendimento - SP",
+    "maps_link": "https://maps.google.com/?q=Clinica+Veterinaria+Sao+Francisco",
     "avaliacao": "4.9",
-    "total_avaliacoes": "120",
+    "total_avaliacoes": "150",
     "capa_img": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80",
     "logo_img": "https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&w=300&q=80",
-    "horarios_resumo": "Seg a Sáb: 08h às 20h",
+    "horarios_resumo": "Seg a Sáb: 08h às 19h",
     "horarios_lista": [
-      {"dia": "Segunda a Sexta", "hora": "08:00 - 20:00", "urgencia": false},
-      {"dia": "Sábado", "hora": "08:00 - 18:00", "urgencia": false},
+      {"dia": "Segunda a Sexta", "hora": "08:00 - 19:00", "urgencia": false},
+      {"dia": "Sábado", "hora": "08:00 - 16:00", "urgencia": false},
       {"dia": "Domingos e Feriados", "hora": "Plantão Sob Consulta", "urgencia": true}
     ],
     "servicos": [
-      {"titulo": "Consultas Médicas", "desc": "Geral, dermatologia e ortopedia veterinária.", "icone": "fa-user-doctor"},
-      {"titulo": "Vacinação Importada", "desc": "V8/V10, Antirrábica e V4/V5 para felinos.", "icone": "fa-syringe"},
-      {"titulo": "Exames & Ultrassom", "desc": "Laboratório próprio com resultado no mesmo dia.", "icone": "fa-vial"},
-      {"titulo": "Banho e Tosa", "desc": "Tosa higiênica, na tesoura e hidratação.", "icone": "fa-shower"}
+      {"titulo": "Consultas Especializadas", "desc": "Atendimento clínico geral e especializado para cães e gatos.", "icone": "fa-user-doctor"},
+      {"titulo": "Exames & Diagnóstico", "desc": "Estrutura para exames laboratoriais e suporte diagnóstico.", "icone": "fa-vial"},
+      {"titulo": "Cirurgia Veterinária", "desc": "Centro cirúrgico equipado e equipe capacitada para procedimentos seguros.", "icone": "fa-scissors"},
+      {"titulo": "Vacinação & Farmácia", "desc": "Imunização e produtos essenciais para a saúde do seu pet.", "icone": "fa-syringe"}
     ],
     "galeria": [
       "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=400&q=80",
@@ -59,7 +59,7 @@
       "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=400&q=80",
       "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=400&q=80"
     ]
-  }
+  },
   "amipet-itaqua": {
     "nome": "Amipet Itaquá",
     "subtitulo": "Pet shop completo, rações, farmácia veterinária, acessórios, banho e tosa e atendimento veterinário em Itaquaquecetuba.",
