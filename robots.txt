@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /*?id=*&amp;*
+
+Sitemap: https://www.clinicaveterinariaitaqua.com.br/sitemap.xml
