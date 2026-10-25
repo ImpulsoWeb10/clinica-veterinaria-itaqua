@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Pet Itaquá | Guia Oficial de Parceiros</title>
+    <title>Clínicas Veterinárias em Itaquaquecetuba – SP | Portal Pet Itaquá</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome para Ícones -->
@@ -23,13 +23,13 @@
                 <span>clinicaveterinariaitaqua.com.br</span>
             </a>
             
-            <!-- Botão com Lista Suspensa -->
+            <!-- Botão com Lista Suspensa Dinâmica -->
             <div class="relative">
                 <button onclick="toggleModalParceiros()" class="inline-flex items-center gap-1.5 bg-emerald-800 hover:bg-emerald-700 text-white px-3.5 py-1.5 rounded-full text-xs font-bold border border-emerald-700/60 transition shadow-sm">
                     <i class="fa-solid fa-shield-cat text-emerald-400"></i> Parceiros Verificados <i class="fa-solid fa-chevron-down text-[10px] ml-1"></i>
                 </button>
 
-                <!-- Menu Dropdown / Lista Dinâmica -->
+                <!-- Menu Dropdown -->
                 <div id="dropdown-parceiros" class="hidden absolute right-0 mt-2 w-72 bg-white rounded-2xl shadow-2xl border border-slate-100 py-2 z-50 text-slate-800">
                     <div class="px-4 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 flex items-center justify-between">
                         <span>Estabelecimentos</span>
@@ -43,7 +43,7 @@
         </div>
     </header>
 
-    <!-- Conteúdo da Página Principal (Portal) -->
+    <!-- Conteúdo da Página Principal -->
     <main class="max-w-4xl mx-auto px-4 pt-8 space-y-8">
         
         <!-- Hero Section -->
@@ -52,10 +52,10 @@
                 Guia Oficial de Itaquaquecetuba-SP
             </span>
             <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-                Encontre os Melhores Profissionais Pet
+                Clínicas Veterinárias em Itaquaquecetuba – SP
             </h1>
             <p class="text-sm sm:text-base text-slate-600 max-w-xl mx-auto">
-                Clínicas veterinárias, pet shops e serviços especializados verificados para garantir o melhor cuidado para o seu pet.
+                Plataforma informativa para localizar estabelecimentos veterinários independentes e profissionais parceiros na região.
             </p>
         </section>
 
@@ -71,12 +71,13 @@
 
     </main>
 
-    <!-- Footer -->
-    <footer class="mt-16 py-6 text-center text-xs text-slate-400 border-t border-slate-200">
+    <!-- Rodapé -->
+    <footer class="mt-16 py-6 text-center text-xs text-slate-400 border-t border-slate-200 space-y-1">
         <p>© 2026 clinicaveterinariaitaqua.com.br • O portal oficial da saúde pet em Itaquaquecetuba-SP</p>
+        <p class="text-[11px] text-slate-400">Aviso: Este portal é um diretório informativo independente e não substitui a consulta médica veterinária.</p>
     </footer>
 
-    <!-- Script de Sincronização Automática -->
+    <!-- Script de Sincronização -->
     <script>
         async function carregarPortal() {
             try {
@@ -89,12 +90,11 @@
                 dropdownLista.innerHTML = '';
                 gridDestaque.innerHTML = '';
 
-                // Varre cada parceiro cadastrado no JSON
                 Object.keys(dados).forEach(id => {
                     const p = dados[id];
                     const linkPagina = `parceiro.html?id=${id}`;
 
-                    // 1. Preenche o Dropdown do Botão
+                    // Dropdown
                     const itemDrop = document.createElement('a');
                     itemDrop.href = linkPagina;
                     itemDrop.className = "flex items-center gap-3 px-4 py-3 hover:bg-emerald-50 transition group";
@@ -107,7 +107,7 @@
                     `;
                     dropdownLista.appendChild(itemDrop);
 
-                    // 2. Preenche os Cards de Destaque na Página Principal
+                    // Cards Destaque
                     const card = document.createElement('a');
                     card.href = linkPagina;
                     card.className = "bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-emerald-300 transition flex items-center gap-4 group";
@@ -135,7 +135,6 @@
             dropdown.classList.toggle('hidden');
         }
 
-        // Fecha o menu ao clicar fora
         window.addEventListener('click', function(e) {
             const dropdown = document.getElementById('dropdown-parceiros');
             const btn = e.target.closest('button');
