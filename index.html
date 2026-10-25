@@ -13,7 +13,10 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-N29P7SEYWC');
+      gtag('config', 'G-N29P7SEYWC', {
+        'cookie_domain': 'auto',
+        'cookie_expires': 63072000
+      });
     </script>
 
     <!-- TAILWIND CSS & FONT AWESOME -->
@@ -22,7 +25,12 @@
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            -webkit-text-size-adjust: 100%;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+        }
 
         /* Animação de Brilho Reluzente (Shimmer / Light Sweep) */
         @keyframes sweep {
@@ -45,7 +53,7 @@
             background: linear-gradient(
                 90deg,
                 rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.6) 50%,
+                rgba(255, 255, 255, 0.4) 50%,
                 rgba(255, 255, 255, 0) 100%
             );
             transform: translateX(-150%) skewX(-20deg);
@@ -55,8 +63,8 @@
 
         /* Efeito Pulsante Suave */
         @keyframes pulse-subtle {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.5); }
-            50% { transform: scale(1.03); box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+            50% { transform: scale(1.02); box-shadow: 0 0 0 8px rgba(245, 158, 11, 0); }
         }
 
         .btn-pulse {
@@ -150,9 +158,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
                 
-                <!-- ESPAÇO DA LOGO DO PORTAL (Abaixo de Portal Pet Itaquá e Acima da Região) -->
+                <!-- LOGO DO PORTAL -->
                 <div class="flex flex-col items-center lg:items-start gap-3">
-                    <img src="Logo-clinicas-veterinarias-itaqua.png" alt="Portal Pet Itaquá Logo" class="h-40 sm:h-48 object-contain max-w-xs drop-shadow-md" onerror="this.style.display='none'">
+                    <img src="logo-portal-pet-itaqua.png" alt="Portal Pet Itaquá Logo" class="h-20 sm:h-24 object-contain max-w-xs drop-shadow-md" onerror="this.style.display='none'">
                     
                     <div class="inline-flex items-center gap-2 bg-emerald-800/80 text-emerald-300 px-3.5 py-1.5 rounded-full text-xs font-bold border border-emerald-700/60 shadow-sm">
                         <i class="fa-solid fa-location-dot text-emerald-400"></i> Itaquaquecetuba – SP e Região
@@ -220,6 +228,8 @@
                             <option value="todos">Todos os Bairros</option>
                             <option value="Centro">Centro</option>
                             <option value="Estância Fraternidade">Estância Fraternidade</option>
+                            <option value="Jardim Nova Itaquá">Jardim Nova Itaquá</option>
+                            <option value="São Francisco">São Francisco</option>
                         </select>
                         <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
                     </div>
@@ -266,7 +276,7 @@
             </div>
         </section>
 
-        <!-- BANNER DO MEIO: BOTÃO COM BRILHO PASSANDO NO MEIO -->
+        <!-- BANNER DO MEIO -->
         <section class="bg-gradient-to-r from-emerald-900 to-teal-900 rounded-3xl p-8 sm:p-10 text-white shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 border border-emerald-800">
             <div class="space-y-2 text-center md:text-left">
                 <span class="bg-amber-500/20 text-amber-300 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-block">
@@ -521,65 +531,82 @@
         </div>
     </footer>
 
-    <!-- MODAL ELEGANTE: SEJA UM PARCEIRO -->
-    <div id="modal-cadastro-parceiro" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-white rounded-3xl shadow-2xl border border-slate-100 max-w-xl w-full p-6 sm:p-8 relative my-8 overflow-hidden">
-            <button onclick="fecharModalCadastroParceiro()" class="absolute top-5 right-5 w-9 h-9 bg-slate-100 hover:bg-slate-200 text-slate-500 rounded-full flex items-center justify-center transition">
-                <i class="fa-solid fa-xmark text-base"></i>
+    <!-- MODAL ELEGANTE E SOFISTICADO: SEJA UM PARCEIRO -->
+    <div id="modal-cadastro-parceiro" class="hidden fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto transition-all">
+        <div class="bg-white rounded-3xl shadow-2xl border border-slate-100 max-w-xl w-full p-8 sm:p-10 relative my-8 overflow-hidden transform transition-all">
+            
+            <!-- Botão Fechar Sofisticado -->
+            <button onclick="fecharModalCadastroParceiro()" class="absolute top-6 right-6 w-10 h-10 bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 rounded-full flex items-center justify-center transition shadow-sm">
+                <i class="fa-solid fa-xmark text-lg"></i>
             </button>
 
-            <div class="mb-6 space-y-1">
-                <span class="inline-flex items-center gap-1.5 bg-amber-100 text-amber-800 text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
-                    <i class="fa-solid fa-paw text-amber-600"></i> Seja um Parceiro Oficial
-                </span>
-                <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight">Cadastrar Estabelecimento</h3>
-                <p class="text-xs text-slate-500">Preencha os dados abaixo. Você será redirecionado para o nosso WhatsApp e os dados serão enviados ao nosso setor de cadastros.</p>
+            <!-- Cabeçalho do Modal -->
+            <div class="mb-8 space-y-2">
+                <div class="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 text-xs font-extrabold px-3.5 py-1.5 rounded-full border border-emerald-200 shadow-sm uppercase tracking-wider">
+                    <i class="fa-solid fa-shield-cat text-emerald-600"></i> Rede Oficial de Parceiros
+                </div>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Cadastrar Estabelecimento</h3>
+                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">Preencha as informações abaixo para solicitar a inclusão da sua clínica ou pet shop em nosso diretório verificado.</p>
             </div>
 
-            <form id="form-seja-parceiro" action="https://formspree.io/f/xknkyyyy" method="POST" onsubmit="enviarCadastroParceiro(event)" class="space-y-4 text-left">
+            <!-- Formulário com Campos Refinados e Ícones -->
+            <form id="form-seja-parceiro" action="https://formspree.io/f/xknkyyyy" method="POST" onsubmit="enviarCadastroParceiro(event)" class="space-y-5 text-left">
                 <input type="hidden" name="_to" value="impulsoweb10@gmail.com">
                 <input type="hidden" name="_subject" value="NOVO PARCEIRO PET ITAQUÁ">
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Nome da Clínica / Pet Shop *</label>
-                        <input type="text" id="parceiro-nome-estab" name="Nome_Estabelecimento" required placeholder="Ex: Vet São Lucas" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        <label class="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                            <i class="fa-solid fa-house-medical text-emerald-600"></i> Nome da Clínica / Pet Shop *
+                        </label>
+                        <input type="text" id="parceiro-nome-estab" name="Nome_Estabelecimento" required placeholder="Ex: Vet São Lucas" class="w-full bg-slate-50/80 border border-slate-200 rounded-2xl px-4 py-3 text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition shadow-sm">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Nome do Responsável *</label>
-                        <input type="text" id="parceiro-nome-resp" name="Nome_Responsavel" required placeholder="Ex: Dr. Roberto" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        <label class="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                            <i class="fa-solid fa-user-doctor text-emerald-600"></i> Nome do Responsável *
+                        </label>
+                        <input type="text" id="parceiro-nome-resp" name="Nome_Responsavel" required placeholder="Ex: Dr. Roberto" class="w-full bg-slate-50/80 border border-slate-200 rounded-2xl px-4 py-3 text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition shadow-sm">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Bairro *</label>
-                        <input type="text" id="parceiro-bairro-estab" name="Bairro" required placeholder="Ex: Centro - Itaquá" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        <label class="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                            <i class="fa-solid fa-location-dot text-emerald-600"></i> Bairro *
+                        </label>
+                        <input type="text" id="parceiro-bairro-estab" name="Bairro" required placeholder="Ex: Centro - Itaquá" class="w-full bg-slate-50/80 border border-slate-200 rounded-2xl px-4 py-3 text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition shadow-sm">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">WhatsApp de Contato *</label>
-                        <input type="tel" id="parceiro-whats-estab" name="WhatsApp" required placeholder="(11) 99999-9999" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        <label class="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                            <i class="fa-brands fa-whatsapp text-emerald-600"></i> WhatsApp de Contato *
+                        </label>
+                        <input type="tel" id="parceiro-whats-estab" name="WhatsApp" required placeholder="(11) 99999-9999" class="w-full bg-slate-50/80 border border-slate-200 rounded-2xl px-4 py-3 text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition shadow-sm">
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">E-mail Profissional</label>
-                    <input type="email" id="parceiro-email-estab" name="Email" placeholder="contato@suaclinica.com.br" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    <label class="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                        <i class="fa-solid fa-envelope text-emerald-600"></i> E-mail Profissional
+                    </label>
+                    <input type="email" id="parceiro-email-estab" name="Email" placeholder="contato@suaclinica.com.br" class="w-full bg-slate-50/80 border border-slate-200 rounded-2xl px-4 py-3 text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition shadow-sm">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Serviços Oferecidos *</label>
-                    <textarea id="parceiro-servicos-estab" name="Servicos" required rows="2" placeholder="Ex: Consultas, vacinação, cirurgias, banho e tosa..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500"></textarea>
+                    <label class="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                        <i class="fa-solid fa-stethoscope text-emerald-600"></i> Serviços Oferecidos *
+                    </label>
+                    <textarea id="parceiro-servicos-estab" name="Servicos" required rows="2" placeholder="Ex: Consultas, vacinação, cirurgias, banho e tosa..." class="w-full bg-slate-50/80 border border-slate-200 rounded-2xl px-4 py-3 text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition shadow-sm resize-none"></textarea>
                 </div>
 
-                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-extrabold py-3.5 rounded-xl shadow-lg shadow-emerald-600/30 transition text-sm flex items-center justify-center gap-2">
+                <!-- Botão Enviar Sofisticado com Efeito Shimmer -->
+                <button type="submit" class="btn-shimmer w-full bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-extrabold py-4 rounded-2xl shadow-xl shadow-emerald-600/30 transition text-sm uppercase tracking-wider flex items-center justify-center gap-2 transform hover:scale-[1.01] active:scale-[0.99]">
                     <i class="fa-brands fa-whatsapp text-lg"></i> Enviar Solicitação de Cadastro
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- SCRIPT DE CARROSSEL, BUSCA E NAVEGAÇÃO CORRIGIDA -->
+    <!-- SCRIPT DE CARROSSEL, BUSCA E NAVEGAÇÃO -->
     <script>
         let dadosGlobais = {};
         let slideAtual = 0;
@@ -659,7 +686,6 @@
             });
         }
 
-        // Executar Busca Inteligente com Filtros Reais
         function executarBusca() {
             const bairro = document.getElementById('filtro-bairro').value;
             const servico = document.getElementById('filtro-servico').value;
@@ -684,8 +710,6 @@
             });
 
             renderizarParceiros(resultados);
-
-            // Rola suavemente até a seção de parceiros
             document.getElementById('secao-parceiros').scrollIntoView({ behavior: 'smooth' });
         }
 
@@ -695,14 +719,12 @@
             renderizarParceiros(dadosGlobais);
         }
 
-        // Lógica do Dropdown "Ver Parceiros"
         function toggleModalParceiros(e) {
             if (e) e.stopPropagation();
             const dropdown = document.getElementById('dropdown-parceiros');
             dropdown.classList.toggle('hidden');
         }
 
-        // Carrossel de Imagens
         function mudarSlidePet(direcao) {
             slideAtual += direcao;
             if (slideAtual >= totalSlides) slideAtual = 0;
@@ -774,7 +796,6 @@
             window.open(urlWhats, '_blank');
         }
 
-        // Fecha o dropdown se clicar fora
         window.addEventListener('click', function(e) {
             const dropdown = document.getElementById('dropdown-parceiros');
             const btn = document.getElementById('btn-ver-parceiros');
